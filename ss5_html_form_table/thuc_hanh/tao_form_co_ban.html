@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .wufoo {
+        font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    }
+</style>
+<body>
+<form method="get" action="tao_form_co_ban.html" class="wufoo">
+    <fieldset>
+       <legend><h2>Order form</h2></legend>
+       <p> What would you like to buy?</p>
+        <label><select name = "would you like to buy?">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select></label> <br>
+        <p>How many would you like to order?</p>
+        <label><input type="radio" name="quantity" value="1-$10">1-$10</label><br>
+        <label><input type="radio" name="quantity" value="2-$10">2-$20</label><br>
+        <label><input type="radio" name="quantity" value="3-$10">3-$30</label><br>
+        <p>Name <span style = "color:red">*</span></p>
+        <label><input type="text" name="firstname" value="FistName" size="15"></label>
+        <label><input type="text" name="lastname" value="LastName" size="15"></label><br>
+        <p>Email</p>
+        <label><input type="text" name="email" size="35"></label><br>
+        <p>Phone Number</p>
+        <label><input type="text" name="phone_1" size="5"></label>
+        <label><input type="text" name="phone_2" size="5"></label>
+        <label><input type="text" name="phone_3" size="5"></label><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+</body>
+</html>

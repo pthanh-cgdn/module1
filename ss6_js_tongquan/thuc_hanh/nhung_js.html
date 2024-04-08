@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" onclick="alert('Xin chao!')">Click Me(alert)</button>
+<div id="demo"></div>
+<button type="button" onclick="sayHello()">Click Me(getElement)</button><br>
+<button type="button" onclick="document.write('Xin chào')">Click Me(write)</button><br>
+<button type="button" onclick="console.log('Xin chào')">Click Me(log)</button>
+<script>
+    function sayHello(){
+        document.getElementById("demo").innerHTML="Xin chao"
+    }
+</script>
+</body>
+</html>

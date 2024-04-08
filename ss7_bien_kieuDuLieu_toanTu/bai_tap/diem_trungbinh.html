@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>average score</title>
+</head>
+<body>
+<script>
+    let math = Number(prompt("Please input your math's score"));
+    let physic = Number(prompt("Please input your physic's score"));
+    let chem = Number(prompt("Please input your chem's score"));
+    let average_score = ((math+physic+chem)/3).toFixed(2)
+    document.write("Your average score is: "+average_score)
+</script>
+
+<script>
+    let r = Number(prompt("Please input radius"));
+    let area = (Math.PI*r**2).toFixed(2)
+    document.write("The area of circle: "+area)
+</script>
+
+<script>
+    let r = Number(prompt("Please input radius"));
+    let perimeter = (Math.PI*2*r).toFixed(2)
+    document.write("The area of circle: "+perimeter)
+</script>
+
+<script>
+    let C = Number(prompt("Please input temperature in C"));
+    let F = (C/5*9+32).toFixed(2)
+    document.write("The temperature in F: "+F)
+</script>
+</body>
+</html>

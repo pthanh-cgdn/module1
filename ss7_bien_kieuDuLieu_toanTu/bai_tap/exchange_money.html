@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foreign Exchange Rate</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>From Currency</th>
+        <th>To Currency</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td><input type="text" id="money_amount"></td>
+        <td><select id="fromCur">
+            <option>VND</option>
+            <option>USD</option>
+        </select>
+        </td>
+        <td>
+        <select id="toCur">
+            <option>USD</option>
+            <option>VND</option>
+        </select>
+        </td>
+        <td><button type="button" onclick="exChange(money_amount.value,fromCur.value,toCur.value);">Convert</button>
+        </td>
+    </tr>
+</table>
+<div id="result"></div>
+<script>
+    let usdToVnd = 25000
+    function exChange(amnt,fromCur,toCur) {
+        let exAmount
+        if (fromCur == "USD" && toCur == "VND") {
+            exAmount = amnt * usdToVnd
+        }
+        if (fromCur == "VND" && toCur == "USD") {
+            exAmount = amnt / usdToVnd
+        }
+        if (fromCur == toCur) {
+            exAmount = amnt
+        }
+        document.getElementById("result").innerHTML = "Result: " + exAmount +" "+toCur
+    }
+</script>
+</body>
+</html>

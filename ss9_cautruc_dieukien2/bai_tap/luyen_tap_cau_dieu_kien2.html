@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Bai1: Chuyen tu do C sang F
+    let tempC = +prompt('Nhap nhiet do C')
+    let tempF
+    if (isNaN(tempC)){
+        alert('Vui long nhap dung dinh dang so')
+    } else{
+        tempF = tempC*9/5 + 32
+        alert('Nhiet do F la ' + tempF)
+    }
+    //Bai7: Giai phuong trinh bac 2 (aX^2+bX+c=0)
+    let a = +prompt('Nhap a');
+    let b = +prompt('Nhap b');
+    let c = +prompt('Nhap c');
+    if (isNaN(a)||isNaN(b)||isNaN(c)){
+        alert('Nhap lai so lieu')
+    } else {
+        if (a == 0) {
+            if (b == 0) {
+                if (c == 0) {
+                    alert("Phuong trinh co vo so nghiem")
+                } else {
+                    alert("Phuong trinh vo nghiem")
+                }
+            } else {
+                let x = c / b
+                alert('Phuong trinh co nghiem duy nhat la ' + x)
+            }
+        } else {
+            let delta = b ** 2 - 4 * a * c;
+            if (delta < 0) {
+                    alert('Phuowng trinh vo nghiem')
+                } else if (delta > 0) {
+                    let x1 = (-b + Math.sqrt(delta)) / 2*a;
+                    let x2 = (-b - Math.sqrt(delta)) / 2*a;
+                    alert('Phuong trinh co 2 nghiem')
+                    alert("Nghiem thu 1 cua phuong trinh la " + x1);
+                    alert("Nghiem thu 2 cua phuong trinh la " + x2);
+                } else{
+                let x= -b/2*a
+                alert("Phuong trinh co nghiem duy nhat "+x)
+                }
+            }
+    }
+
+</script>
+
+</body>
+</html>

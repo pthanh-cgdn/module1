@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Leave Year</title>
+</head>
+<body>
+<script>
+    year=parseInt(prompt("Please input year:"));
+    let isLeaveYear = false;
+    let isDivisionBy4 = year%4==0;
+
+    if (isDivisionBy4){
+        let isDivisionBy100 = year%100==0;
+        if (isDivisionBy100){
+            let isDivisionBy400 = year%400==0;
+            if (isDivisionBy400) {
+                isLeaveYear = true
+            }
+        } else {
+            isLeaveYear = true
+        }
+    }
+    if(isLeaveYear){
+        alert(year + " is a leave year")
+    }else{
+        alert(year + " is not a leave year")
+    }
+</script>
+</body>
+</html>

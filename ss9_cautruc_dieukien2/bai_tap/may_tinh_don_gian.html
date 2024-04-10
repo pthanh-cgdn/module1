@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+</head>
+<body>
+<table name="simple calculator">
+    <tr>
+        <th colspan="4" id="result" value="0"></th>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="1" onclick="getNum(1)">1</button>
+        </td>
+        <td>
+            <button type="button" value="2" onclick="getNum(2)">2</button>
+        </td>
+        <td>
+            <button type="button" value="3" onclick="getNum(3)">3</button>
+        </td>
+        <td>
+            <button type="button" onclick="getNumber2('+')" >+</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="4" onclick="getNum(4)">4</button>
+        </td>
+        <td>
+            <button type="button" value="5" onclick="getNum(5)">5</button>
+        </td>
+        <td>
+            <button type="button" value="6" onclick="getNum(6)">6</button>
+        </td>
+        <td>
+            <button type="button" onclick="getNumber2('-')">-</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="7" onclick="getNum(7)">7</button>
+        </td>
+        <td>
+            <button type="button" value="8" onclick="getNum(8)">8</button>
+        </td>
+        <td>
+            <button type="button" value="9" onclick="getNum(9)">9</button>
+        </td>
+        <td>
+            <button type="button" onclick="getNumber2('x')">x</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="reset" onclick="reset()">C</button>
+        </td>
+        <td>
+            <button type="button" value="0" onclick="getNum(0)">0</button>
+        </td>
+        <td>
+            <button type="button" onclick="getResult()">=</button>
+        </td>
+        <td>
+            <button type="button" onclick="getNumber2('/')">/</button>
+        </td>
+    </tr>
+    <script>
+        let num_temp='';
+        let num1=0;
+        let oper='';
+        function getNum(num){
+            num_temp = num_temp + num;
+            document.getElementById('result').innerHTML=Number(num_temp)
+        };
+        function getNumber2(operator){
+            num1=(Number(num_temp)==0)? num1 : Number(num_temp);
+            num_temp=0;
+            switch (operator){
+                case '+':
+                    oper='add';
+                    break;
+                case '-':
+                    oper='deduct';
+                    break;
+                case 'x':
+                    oper='multi';
+                    break;
+                case '/':
+                    oper='div';
+                    break;
+            };
+            document.getElementById('result').innerHTML=Number(num1)
+        }
+        function getResult(){
+            switch (oper) {
+                case 'add':
+                    num_temp = Number(num1) + Number(num_temp);
+                    break;
+                case 'deduct':
+                    num_temp = Number(num1) - Number(num_temp);
+                    break;
+                case 'multi':
+                    num_temp = Number(num1) * Number(num_temp);
+                    break;
+                case 'div':
+                    num_temp = Number(num1) / Number(num_temp);
+                    break;
+                case '':
+                    num_temp= num_temp;
+                    break;
+            };
+            document.getElementById('result').innerHTML = Number(num_temp);
+            oper='';
+        };
+
+        function reset(){
+            num_temp = '';
+            document.getElementById('result').innerHTML = Number(num_temp);
+        };
+
+
+    </script>
+</table>
+</body>
+</html>

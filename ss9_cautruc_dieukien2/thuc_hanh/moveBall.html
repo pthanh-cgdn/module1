@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moving the Ball</title>
+</head>
+<body>
+<img id="image" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Football_%28soccer_ball%29.svg" style = "width: 30%">
+<p> Click the button below to move ball to right</p>
+<button type="button" onclick="moveRight()">Click Me</button>
+<script>
+    let imgObject = document.getElementById("image")
+    function init(){
+        imgObject = document.getElementById("image")
+        imgObject.style.position = 'relative'
+        imgObject.style.left = '0px'
+    }
+    function moveRight(){
+        imgObject.style.left = parseInt(imgObject.style.left) + 10 + 'px';
+    }
+    window.onload = init;
+</script>
+</body>
+</html>

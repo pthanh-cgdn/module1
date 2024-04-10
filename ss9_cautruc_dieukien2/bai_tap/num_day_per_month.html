@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number of day per month</title>
+</head>
+<body>
+<input type="text" id="month" size="30">
+<button type="button" onclick="domonth(parseInt(month.value))">Tính số ngày</button>
+<div id="demo"></div>
+<script>
+    function isLeaveYear(year){
+        let isLeaveYear = false;
+        let isDivisionBy4 = year%4==0;
+        if (isDivisionBy4){
+            let isDivisionBy100 = year%100==0;
+            if (isDivisionBy100) {
+                let isDivisionBy400 = year % 400 == 0;
+                if (isDivisionBy400) {
+                    isLeaveYear = true
+                }
+            } else{
+                isLeaveYear = true
+            }
+        }
+
+}
+    function domonth(month) {
+        let dom
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                dom = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                dom = 30;
+                break;
+            case 2:
+                year=parseInt(prompt('Nhập năm'))
+                if (isLeaveYear(year)) {
+                    dom=29
+                }else{
+                    dom=28
+                }
+        }
+        document.getElementById('demo').innerHTML='Tháng '+month+" có "+dom+" ngày"
+    }
+
+</script>
+</body>
+</html>

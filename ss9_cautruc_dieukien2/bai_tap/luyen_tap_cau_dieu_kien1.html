@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//Bai1: kiểm tra xem a có chia hết cho b hay không
+let a = +prompt("Nhap so nguyen a");
+let b = +prompt("Nhap so nguyen b");
+if (!typeof(a)=='number'){
+    alert('a khong phai dinh dang so');
+};
+if (!typeof(b)=='number'){
+    alert('b khong phai dinh dang so');
+};
+if (!Number.isInteger(a)||a<0){
+    alert('a khong phai so nguyen duong');
+};
+if (!Number.isInteger(b)||b<0){
+    alert('b khong phai so nguyen duong');
+};
+if(Number.isInteger(a) && Number.isInteger(b) && a%b == 0){
+    alert('a chia het cho b');
+}else if(Number.isInteger(a) && Number.isInteger(b) && a%b != 0){
+    alert('a khong chia het cho b')
+};
+//Bai2: Nhập tuổi và in ra kết quả nếu tuổi học sinh đó không đủ điều kiện vào học lớp 10
+let age= +prompt("Nhap so tuoi cua ban");
+if (!typeof(age)=='number'){
+    alert('Ban nhap sai dinh dang')
+};
+if (age < 16){
+    alert('ban chua du tuoi hoc lop 10')
+};
+//Bai3:Nhập một số nguyên bất kỳ và in kết quả ra màn hình để nói cho người dùng biết số đó là lớn hay nhỏ hơn 0
+let a = +prompt("Nhap so nguyen a");
+
+if (!Number.isInteger(a)){
+    alert('a khong phai so nguyen');
+} else{
+    if(a>0) {
+        alert('a la so lon hon 0')
+    }else if(a=0) {
+        alert('a la so 0')
+    }else if(a<0) {
+        alert('a la so nho hon 0')
+    }
+} ;
+//Bai4: Nhập 3 số nguyên và tìm giá trị lớn nhất của ba số nguyên đó
+let num1= +prompt("Nhap so nguyen thu 1");
+let num2= +prompt("Nhap so nguyen thu 2");
+let num3= +prompt("Nhap so nguyen thu 3");
+let max;
+if(typeof(num1)!=number || typeof(num1)!=number || typeof(num1)!=number){
+    alert('ban nhap khong phai dinh dang so')
+};
+if(num1>=num2 && num1>=num3){
+    max=num1;
+}else if(num2>=num3){
+    max=num2
+} else{
+    max=num3
+}
+alert('So lon nhat la ' + max)
+//Bai6: Tính hoa hồng nhận được tuỳ theo mức doanh số bán hàng
+let doanhso= +prompt('Nhap doanh so ban hang cua ban');
+let hoahong=0
+if(isNan(doanhso)){
+    alert('Ban nhap sai du lieu')
+};
+//<10.000.000: 5%
+//<15.000.000: 10%
+//<20.000.000: 15%
+//<30.000.000: 30%
+if (doanhso>=30000000){
+    hoahong=doanhso*0.3
+} else if(doanhso>=20000000){
+    hoahong=doanhso*0.2
+} else if(doanhso>=15000000){
+    hoahong=doanhso*0.1
+} else if(doanhso>=10000000){
+    hoahong=doanhso*0.05
+}
+alert("Hoa hong doanh so cua ban la " +hoahong)
+
+</script>
+</body>
+</html>

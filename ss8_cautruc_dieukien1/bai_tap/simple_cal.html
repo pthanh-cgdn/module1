@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foreign Exchange Rate</title>
+</head>
+<body>
+<input type="text" id="num1" size="20">
+<input type="text" id="num2" size="20"><br>
+<button type="button" onclick="add2Number(Number(num1.value),Number(num2.value));">Addition(+)</button>
+<button type="button" onclick="sub2Number(Number(num1.value),Number(num2.value));">Subtraction(-)</button>
+<button type="button" onclick="mul2Number(Number(num1.value),Number(num2.value));">Multiplication(x)</button>
+<button type="button" onclick="div2Number(Number(num1.value),Number(num2.value));">Division(:)</button>
+<div id="show"></div>
+<script>
+    let usdToVnd = 25000
+    function add2Number(num1,num2) {
+        let result = num1 + num2
+        document.getElementById("show").innerHTML = "Result Addition: " + result
+    }
+    function sub2Number(num1,num2) {
+        let result = num1 - num2
+        document.getElementById("show").innerHTML = "Result Subtraction: " + result
+    }
+    function mul2Number(num1,num2) {
+        let result = num1 * num2
+        document.getElementById("show").innerHTML = "Result Multiplication: " + result
+    }
+    function div2Number(num1,num2) {
+        let result = num1 / num2
+        document.getElementById("show").innerHTML = "Result Division: " + result
+    }
+</script>
+</body>
+</html>

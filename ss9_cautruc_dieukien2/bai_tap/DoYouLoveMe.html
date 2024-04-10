@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do You Love Me</title>
+</head>
+<body>
+<p>
+<h1><div style='position:absolute;top:0;left:0'>Do You Love Me ?</div></h1>
+<button type="button" id='agree' style="position:absolute;left:50px;top:50px" onclick="sayYes()">Yes</button>
+<button type="button" id="reject" onclick="catchMe()">No</button>
+
+<script>
+    function init(){
+        let noButton=document.getElementById("reject")
+        noButton.style.position='absolute';
+        noButton.style.top= '50px';
+        noButton.style.left= '100px';
+    };
+    function sayYes(){
+        alert("<3")
+    };
+    function catchMe(){
+        let top_pos=Math.floor(Math.random()*window.screen.height+1);
+        let left_pos=Math.floor(Math.random()*window.screen.width+1);
+        let noButton=document.getElementById("reject");
+        noButton.style.top=top_pos + 'px';
+        noButton.style.left=left_pos + 'px'
+    }
+    window.onload=init()
+</script>
+</p>
+</body>
+</html>

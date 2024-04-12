@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise with array</title>
+</head>
+<body>
+<input type="text" size="30" id="inputData">
+<button onclick="addNumber()" >Add</button>
+<button onclick="displayNumber()">Display</button>
+<div id="display"></div>
+<script>
+    let arr=[]
+    let p=''
+    function addNumber(){
+        if (isNaN(Number(document.getElementById("inputData").value))){
+            alert('please input only number data')
+        } else {
+            arr.push(Number(document.getElementById("inputData").value));
+        }
+        document.getElementById('inputData').value = ''
+    };
+    function displayNumber(){
+            for(let i=0; i < arr.length; i++) {
+                p =p + "So thu " + (i+1) +" cua chuoi la " + arr[i] + "<br>"
+            }
+        document.getElementById('display').innerHTML=p
+    }
+</script>
+</body>
+</html>

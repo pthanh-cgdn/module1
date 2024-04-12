@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caro Game</title>
+</head>
+<body>
+<!--    //tao ra 1 table voi cac gia tri laf 0-->
+<!--    //khi nhan vao thay doi thi hien thi gia tri x, y yeu cau nguoi dung nhap vao-->
+<!--    //Sau khi nhap chuyen doi gia tri 0 sang X-->
+<!--   <table>-->
+<!--       <tr>-->
+<!--           <td id ='00'> 0 </td>-->
+<!--           <td id ='01'> 0 </td>-->
+<!--           <td id ='02'> 0 </td>-->
+<!--       </tr>-->
+<!--       <tr>-->
+<!--           <td id ='10'> 0 </td>-->
+<!--           <td id ='11'> 0 </td>-->
+<!--           <td id ='12'> 0 </td>-->
+<!--       </tr>-->
+<!--       <tr>-->
+<!--           <td id ='20'> 0 </td>-->
+<!--           <td id ='21'> 0 </td>-->
+<!--           <td id ='22'> 0 </td>-->
+<!--       </tr>-->
+<!--   </table>-->
+<!--    <button type="button" onclick="caroX()" >Change Value</button>-->
+    <script>
+        let text ='';
+        let arr = [];
+        let createID=''
+        document.write('<table>');
+            for (let i = 0; i < 5; i++) {
+                document.write('<tr>')
+                for (let j = 0; j < 5; j++) {
+                    createID = 'R'+i+'C'+j
+                    document.write('<td id= '+createID+'>O</td>')
+                }
+                document.write('</tr>')
+            }
+        document.write('</table>');
+        document.write('<button type=button onclick=caroX()>Change Value</button>');
+        function caroX(){
+            let x = prompt('Please input x');
+            let y = prompt('Please input y');
+            document.getElementById('R'+x+'C'+y).innerHTML='X';
+        };
+        window.onload = init;
+    </script>
+
+</body>
+</html>

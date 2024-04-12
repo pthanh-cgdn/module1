@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise while loop</title>
+</head>
+<body>
+<script>
+    // Nhap so a, neu a không phải định dạng số thì nhập lại nếu là số thì gán
+    let n;
+    while(isNaN(n)||n<0||n>10){
+        n= +prompt('Nhap so diem toan cua ban');
+        if(isNaN(n)||n<0||n>10){
+            alert('Ban da nhap sai, vui long nhap lai')
+        }
+    };
+    //Bai 1:
+    let num = +prompt("pleas input a number");
+    let total=0;
+    while(num != -1){
+        num = +prompt("pleas input a number");
+        total +=num
+    };
+    alert(total)
+    //Bai 2:
+    let i=1;
+    while (i<100){
+        document.write("<hr width = "+i+"%>");
+        i++
+    };
+</script>
+</body>
+</html>

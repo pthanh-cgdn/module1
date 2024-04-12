@@ -8,7 +8,7 @@
 <p>
 <h1><div style='position:absolute;top:0;left:0'>Do You Love Me ?</div></h1>
 <button type="button" id='agree' style="position:absolute;left:50px;top:50px" onclick="sayYes()">Yes</button>
-<button type="button" id="reject" onclick="catchMe()">No</button>
+<button type="button" id="reject" onmouseover="catchMe()">No</button>
 
 <script>
     function init(){
@@ -21,8 +21,8 @@
         alert("<3")
     };
     function catchMe(){
-        let top_pos=Math.floor(Math.random()*window.screen.height+1);
-        let left_pos=Math.floor(Math.random()*window.screen.width+1);
+        let top_pos=Math.floor(Math.random()*window.innerHeight+1);
+        let left_pos=Math.floor(Math.random()*window.innerWidth+1);
         let noButton=document.getElementById("reject");
         noButton.style.top=top_pos + 'px';
         noButton.style.left=left_pos + 'px'

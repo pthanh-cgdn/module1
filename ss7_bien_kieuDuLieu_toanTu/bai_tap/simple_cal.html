@@ -13,7 +13,7 @@
 <button type="button" onclick="div2Number(Number(num1.value),Number(num2.value));">Division(:)</button>
 <div id="show"></div>
 <script>
-    let usdToVnd = 25000
+    // let usdToVnd = 25000
     function add2Number(num1,num2) {
         let result = num1 + num2
         document.getElementById("show").innerHTML = "Result Addition: " + result
@@ -27,7 +27,7 @@
         document.getElementById("show").innerHTML = "Result Multiplication: " + result
     }
     function div2Number(num1,num2) {
-        let result = num1 / num2
+        let result = num2==0? num1 / num2: "khong thuc hien duoc"
         document.getElementById("show").innerHTML = "Result Division: " + result
     }
 </script>

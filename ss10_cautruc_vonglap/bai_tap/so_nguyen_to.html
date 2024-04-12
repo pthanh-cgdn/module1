@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Số Nguyên Tố</title>
+</head>
+<body>
+<script>
+    let quan = parseInt(prompt('Nhập số lượng số nguyên tố cần in ra'));
+    let cnt=0;
+    let num=2;
+    function isPrime(number){
+        let n =0;
+        for(let i=2;i<=Math.floor(Math.sqrt(number)); i+=1){
+            if (number%i === 0){
+                n += 1;
+            }
+        }
+        if (n===0){
+            return true
+        } else{
+            return false
+        }
+    }
+    while(cnt<quan){
+        if (isPrime(num)){
+            cnt += 1;
+            document.write('Số nguyên tố thứ '+ cnt +' là: '+num +'<br>')
+        }
+        num +=1;
+    }
+    console.log(isPrime(2))
+</script>
+</body>
+</html>

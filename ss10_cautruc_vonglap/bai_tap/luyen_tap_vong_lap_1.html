@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vòng Lặp 1</title>
+</head>
+<body>
+<script>
+    //Bài 5: Tính tổng 20 số đầu tiên trong dãy Fibonaci
+    let n = parseInt(prompt('Nhập số lượng số Fibonaci cần cộng'));
+    let tong=2, num1=1, num2=1, fib=0, cnt=2;
+    if (n===1){
+        tong=1
+    } else if(n===2){
+        tong=2
+    } else{
+        while (cnt<n) {
+            fib = num1 + num2;
+            tong = tong + fib;
+            num1=num2;
+            num2 = fib;
+            cnt+=1;
+            console.log(fib)
+        }
+    }
+    alert('Tong của '+n+' số đầu tiên trong chuỗi fibonaci la '+tong)
+    //Bài 6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên.
+    let n = parseInt(prompt('Nhập số lượng số chia hết cho 7 cần cộng'));
+    let cnt = 0, num = 7, tong = 0;
+    while( cnt < n){
+        if (num%7 === 0) {
+            tong = tong + num;
+            cnt = cnt + 1
+        }
+    };
+    alert('Tong cua '+ n +' so đầu tiên chia hết cho 7 la: '+tong)
+    //Bài 7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz",
+    // 5 thì in ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".
+    for(let n = 1;n <= 100;n++){
+        if(n%15 === 0){
+            document.write("FizzBuzz" + "<br>")
+        } else if(n%5 === 0){
+            document.write("Buzz" + "<br>")
+        } else if(n%3 === 0){
+            document.write("Fizz" + "<br>")
+        } else{
+            document.write(n + "<br>")
+        }
+    }
+    //Bài 8: Game đoán số:
+    function jackpot() {
+        let max = parseInt(prompt('Vui long chon khoang so muon doan'));
+        let jackpot = Math.floor(Math.random() * max);
+        let gess_num = parseInt(prompt('Vui long nhap so'));
+        let i;
+        for (i = 1; i < 3; i++) {
+            if (gess_num === jackpot) {
+                alert('Chuc mung ban trung Jackpot');
+                break;
+            } else if (gess_num < jackpot) {
+                alert('So cua ban nho hon Jackpot, vui long chon so khac')
+            } else {
+                alert('So cua ban lon hon Jackpot, vui long chon so khac')
+            }
+            gess_num = parseInt(prompt('So cua ban da sai, vui long chon so khac'))
+        }
+        if (gess_num !== jackpot) {
+            alert('Ban da het luot doan, chuc ban may man lan sau')
+        } else if (i === 3) {
+            alert('Chuc mung ban trung Jackpot')
+        }
+    }
+</script>
+</body>
+</html>

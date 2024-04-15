@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array</title>
+</head>
+<body>
+<script>
+    // Bai 1:
+    // let myColor = ["Red", "Green", "White", "Black"];
+    // let allColor='';
+    // for (let i=0; i<myColor.length; i++){
+    //     allColor += myColor[i]
+    //     if (i == myColor.length-1){
+    //         break
+    //     };
+    //     allColor +=','
+    // };
+    // console.log(allColor)
+    // Bai 2:
+    // let num = prompt('please input a number');
+    // let newNum = '';
+    // for (let i=0; i<num.length; i++){
+    //     if (num[i]%2==0 && num[i+1]%2==0){
+    //         newNum = newNum + num[i] + '-'
+    //     } else{
+    //         newNum += num[i]
+    //     }
+    // };
+    // console.log(newNum);
+    //Bai 3: The Quick Brown Fox'
+    let str = prompt('Please input a sentence');
+    let new_str ='';
+    for (let i=0 ; i<str.length ; i++){
+        if (str[i] === str[i].toUpperCase()){
+            new_str += str[i].toLowerCase()
+        } else{
+            new_str += str[i].toUpperCase()
+        }
+    };
+    alert(new_str)
+</script>
+</body>
+</html>

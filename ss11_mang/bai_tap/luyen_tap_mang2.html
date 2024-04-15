@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Array 2</title>
+</head>
+<body>
+<script>
+    //Bai1:
+    // let a = [
+    //     [1, 2, 1, 24],
+    //     [8, 11, 9, 4],
+    //     [7, 0, 7, 27],
+    //     [7, 4, 28, 14],
+    //     [3, 10, 26, 7]
+    // ];
+    // for (let i=0 ; i<a.length ; i++){
+    //     console.log('row '+i)
+    //     for (let j=0; j<a[j].length ; j++){
+    //         console.log(a[i][j])
+    //     }
+    // }
+    //Bai2:
+    // let arr = [ 'c', 's', 'c', '2', '6', '1' ];
+    // let s = '';
+    // for (let i=arr.length-1 ; i>=0 ; i--){
+    //     s += arr[i]
+    // };
+    // console.log(s)
+    //Bai3:
+    // let arr = [ 'c', 's', 'c', '2', '6', '1', 3 ];
+    // for (let i=arr.length-1 ; i>=0 ; i--){
+    //     if (!isNaN(Number(arr[i]))){
+    //         cnt++
+    //     }
+    // };
+    // console.log(cnt)
+    //Bai4:
+    // let str = 'i love you 3000';
+    // let cnt = 1;
+    // for (let i=0 ; i<str.length ; i++){
+    //     if (str[i]===' '){
+    //         cnt++
+    //     }
+    // };
+    // console.log(cnt)
+    //Bai5:
+    // let arr1 = [ 'c', 's', 'c', '2', '6', '1', 3 ];
+    // let arr2 = [ 'c', 's', 'c', '2', '6', '1', 3 ];
+    // let cnt=0;
+    // if (arr1.length === arr2.length){
+    //     for (let i=0 ; i<arr1.length ; i++){
+    //         if (arr1[i] === arr2[i]){
+    //             cnt++
+    //         }
+    //     }
+    // };
+    // if (cnt === arr1.length && cnt === arr2.length){
+    //     console.log('2 array are similar')
+    // } else {
+    //     console.log('2 array are similar')
+    // }
+    //Bai6:
+    let arr = ['i','-','love','-','you','-','3000'];
+    let cnt = 1;
+    console.log(arr)
+    for (let i=0 ; i<arr.length ; i++){
+        if (arr[i]==='-'){
+            arr[i]='_'
+        }
+    };
+    console.log(arr)
+</script>
+</body>
+</html>

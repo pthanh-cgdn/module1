@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Array 1</title>
+</head>
+<body>
+<script>
+    // Bai1:
+    // let arr = new Array(10);
+    // let cnt = 0;
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor(Math.random()*30)
+    // };
+    // for (let i=0 ; i<10 ; i++){
+    //     if (arr[i]>=10){
+    //         cnt++
+    //     }
+    // };
+    // console.log(cnt)
+    // Bai2:
+    // let arr = new Array(10);
+    // let cnt = 0;
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor(Math.random()*30)
+    // };
+    // let max = arr[0];
+    // for (let i=1 ; i<10 ; i++){
+    //     if (arr[i] > max){
+    //         max = arr[i];
+    //     }
+    // };
+    // console.log(max);
+    // console.log(arr.indexOf(max));
+    // Bai3:
+    // let arr = new Array(10);
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor(Math.random()*30)
+    // };
+    // let max = arr[0];
+    // let tong = arr[0];
+    // for (let i=1 ; i<10 ; i++){
+    //     if (arr[i] > max){
+    //         max = arr[i];
+    //     };
+    //     tong += arr[i]
+    // };
+    // console.log(max);
+    // console.log(tong/arr.length);
+    //Bai3:
+    // let arr = new Array(10);
+    // let arr2 = new Array(10);
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor(Math.random()*30)
+    // };
+    // for (let i=0 ; i<arr.length ; i++){
+    //     arr2[i] = arr[arr.length-i-1]
+    // };
+    // console.log(arr);
+    // console.log(arr2);
+    //Bai4:
+    // let arr = new Array(10);
+    // let cnt = 0;
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor((Math.random()-0.5)*30)
+    // };
+    // for (let i=0 ; i<arr.length ; i++){
+    //     if (arr[i]<0){
+    //         cnt++
+    //     }
+    // };
+    // console.log(arr);
+    // console.log(cnt);
+    //Bai5:
+    // let arr = new Array(10);
+    // let num = Math.floor((Math.random()-0.5)*50)
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor((Math.random()-0.5)*50)
+    // };
+    // if (arr.indexOf(num)===-1){
+    //     console.log('V is not in the array')
+    // } else {
+    //     console.log('V is in the array')
+    // }
+    // console.log(arr);
+    // console.log(num);
+    //Bai6:
+    // let arr = new Array(10);
+    // let num = Math.floor((Math.random()-0.5)*10)
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor((Math.random()-0.5)*10)
+    // };
+    // console.log(arr)
+    // while (arr.indexOf(num)!==-1){
+    //     for (let i=arr.indexOf(num) ; i<arr.length-1; i++){
+    //         arr[i]=arr[i+1]
+    //     };
+    //     arr[arr.length-1] = 0
+    // }
+    // console.log(arr);
+    //Bai7:
+    // let arr = new Array(10);
+    // let num = Math.floor((Math.random()-0.5)*10)
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor((Math.random()-0.5)*10)
+    // };
+    // console.log(arr)
+    // while (arr.indexOf(num)!==-1){
+    //     for (let i=arr.indexOf(num) ; i<arr.length-1; i++){
+    //         arr[i]=arr[i+1]
+    //     };
+    //     arr[arr.length-1] = 0
+    // }
+    // console.log(arr);
+    //Bai8: sap xep mang: -nếu a > b thì index[a] > index[b]
+    // let arr = new Array(10);
+    // for (let i=0 ; i<10 ; i++){
+    //     arr[i] = Math.floor((Math.random()-0.5)*50)
+    // };
+    // let i = 0;
+    // console.log(arr);
+    // while ( i<arr.length){
+    //     if (arr[i] < arr[i+1]){
+    //         temp = arr[i];
+    //         arr[i] = arr[i+1];
+    //         arr[i+1] = temp;
+    //         i=0;
+    //     } else {
+    //         i = i+1
+    //     }
+    // }
+    // console.log(arr);
+    //Bai9:
+    let a = new Array(10);
+    for (let i=0 ; i<10 ; i++){
+        a[i] = Math.floor((Math.random()-0.5)*50)
+    };
+    let b = new Array(10);
+    for (let i=0 ; i<10 ; i++){
+        b[i] = Math.floor((Math.random()-0.5)*50)
+    };
+    let c=a.concat(b);
+    console.log(c)
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dictionary</title>
+</head>
+<body>
+<script>
+    let eng = ['cat', 'dog', 'lion', 'dinosaur', 'bird', 'fish', 'elephant'];
+    let vi = ['meo','cho', 'su tu', 'khung long', 'chim', 'ca', 'voi'];
+    let word = prompt('please input english word');
+    let pos = eng.indexOf(word);
+    if (pos === -1){
+        alert('Could not find your word')
+    } else {
+        alert('Your word in vietnamese mean '+vi[pos])
+    }
+</script>
+</body>
+</html>

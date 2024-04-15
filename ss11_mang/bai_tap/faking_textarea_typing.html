@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Faking Textarea</title>
+</head>
+<body>
+<h1> Type anything slowly</h1>
+<form name="f">
+<textarea onkeydown="fakeTest();" name="text" cols="50" rows="10"></textarea>
+</form>
+<script>
+    let sentence = ['T','o','i',' ','l','a',' ','m','o','t',' ','t','e','n',' ','n','g','o','c','!','!','!'];
+    let copy = sentence;
+    let temp = ''
+    function fakeTest(){
+        if (copy.length === 0){
+            copy = sentence;
+            temp = '';
+            document.f.text.value = '';
+        } else {
+        temp = temp + copy.shift();
+        document.f.text.value = temp;
+        console.log(sentence)
+    }
+        }
+</script>
+</body>
+</html>

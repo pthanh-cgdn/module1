@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra chuoi doi xung</title>
+</head>
+<body>
+<script>
+    function isPalindrome(str) {
+        if (str.length < 1) {
+            return false
+        } else {
+            while (str[0] === str[str.length - 1] && str.length > 1) {
+                str = str.slice(1, str.length - 1);
+                isPalindrome(str);
+            };
+            return str.length === 0 || str.length === 1
+        };
+    }
+    // let str = 'b';
+    // console.log(str);
+    // str = str.slice(1, str.length - 1);
+    // console.log(str);
+    console.log(isPalindrome('abcba'))
+</script>
+</body>
+</html>

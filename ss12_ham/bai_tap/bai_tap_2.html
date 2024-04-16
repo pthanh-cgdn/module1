@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Execise Function 2</title>
+</head>
+<body>
+<script>
+    //Bai1:
+    // function getSquare(number){
+    //     return number*number
+    // }
+    //Bai2:
+    // function geAreaOfCircle(radius){
+    //     return Math.PI*radius*radius
+    // };
+    // function gePerimeterOfCircle(radius){
+    //     return Math.PI*2*radius
+    // };
+    //Bai3:
+    // function getFactorial(number){
+    //     let result = 1;
+    //     for (let i=1 ; i<=number ; i++){
+    //         result *= i
+    //     };
+    //     return result
+    // };
+    // console.log(getFactorial(9))
+    //Bai4:
+    // function isNumber(number){
+    //     return !isNaN(number)
+    // };
+    // console.log(isNumber(10))
+    //Bai5:
+    // function findMin(num1,num2,num3){
+    //     if (num1 < num2){
+    //         if (num1 < num3) {
+    //             return num1
+    //         } else {
+    //             return num3
+    //         }
+    //     } else {
+    //         if (num2 < num3){
+    //             return num2
+    //         } else {
+    //             return num3
+    //         }
+    //     }
+    // }
+    // console.log(findMin(4,5,5))
+    //Bai6:
+    // function isPositiveNatural(number){
+    //     if (parseInt(number)===number && number>0){
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // };
+    // console.log(isPositiveNatural(-23))
+    //Bai7:
+    //Bai8:
+    // function reverseArray(arr){
+    //     let newArr = [];
+    //     for (let i=0 ; i<arr.length ; i++){
+    //         newArr[i] = arr[arr.length - i - 1]
+    //     };
+    //     return newArr
+    // };
+    // console.log(reverseArray([1,2,3,4,5,6]))
+    //Bai9:
+    function findCharinArray(arr,char){
+        let cnt = 0;
+        if (arr.indexOf(char) === -1){
+            return -1
+        } else{
+            while (arr.indexOf(char) !== -1){
+                cnt++;
+                arr.splice(arr.indexOf(char),1)
+            };
+            return cnt
+        }
+    };
+    console.log(findCharinArray([1,22,21,3,4],2))
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quan ly san pham</title>
+</head>
+<body>
+<div id='showTable'></div>
+<script>
+    let product = ['Apple','Samsung','Xiaomi','HTC','Sony'];
+    buildProductTable();
+    function buildProductTable() {
+        document.write('<table>');
+        document.write('<tr>');
+        document.write('<th>STT');
+        document.write('</th>');
+        document.write('<th>Name');
+        document.write('</th>');
+        document.write('<th>Edit');
+        document.write('</th>');
+        document.write('<th>Delete');
+        document.write('</th>');
+        document.write('</tr>');
+        for (let i = 1; i <= product.length; i++) {
+            document.write('<tr>');
+            document.write('<td>' + i + '</td>');
+            document.write('<td>' + product[i - 1] + '</td>');
+            document.write('<td onclick="editProduct('+i+')"><input type="button" value="Edit"</td>');
+            document.write('<td onclick="deleteProduct('+i+')"><input type="button" value="delete"</td>');
+            document.write('</tr>')
+        }
+        document.write('</table>');
+        document.write('<form><button type="button" onclick="addNewProduct()">Add new product</button></form>');
+    };
+    // buildProductTable(product);
+    function addNewProduct(){
+        newProduct = prompt("Please add new product's name");
+        product.push(newProduct);
+        // document.getElementById('myTable').innerHTML= '';
+        document.getElementsByTagName("body")[0].innerHTML = "";
+        buildProductTable();
+        alert('Add new product');
+        console.log(product)
+    };
+    function deleteProduct(num){
+        product.splice(num-1,1);
+        // document.getElementById('myTable').innerHTML=buildProductTable();
+        document.getElementsByTagName("body")[0].innerHTML = "";
+        buildProductTable();
+        alert('complete delete a product');
+        console.log(product)
+    }   ;
+    function editProduct(num){
+        product[num-1]=prompt(value = product[num-1])
+        // document.getElementById('myTable').innerHTML=buildProductTable();
+        document.getElementsByTagName("body")[0].innerHTML = "";
+        buildProductTable();
+        alert('complete edit a product');
+        console.log(product)
+    }
+</script>
+</body>
+</html>

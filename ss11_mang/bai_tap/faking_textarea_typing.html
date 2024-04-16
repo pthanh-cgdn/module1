@@ -11,15 +11,14 @@
 </form>
 <script>
     let sentence = ['T','o','i',' ','l','a',' ','m','o','t',' ','t','e','n',' ','n','g','o','c','!','!','!'];
-    let copy = sentence;
     let temp = ''
     function fakeTest(){
-        if (copy.length === 0){
-            copy = sentence;
+        if (sentence.length === 0){
+            sentence = ['T','o','i',' ','l','a',' ','m','o','t',' ','t','e','n',' ','n','g','o','c','!','!','!'];
             temp = '';
             document.f.text.value = '';
         } else {
-        temp = temp + copy.shift();
+        temp = temp + sentence.shift();
         document.f.text.value = temp;
         console.log(sentence)
     }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai tap ham 1</title>
+</head>
+<body>
+<script>
+    //Bai1:
+    // function alertMessage(){
+    //     alert('Xin chao')
+    // };
+    // alertMessage()
+    //Bai2:
+    // function increaseOne(number){
+    //     return number + 1
+    // };
+    // console.log(increaseOne(100))
+    //Bai3:
+    // function addIncreasedNumbers(num1,num2){
+    //     if (num1 > num2){
+    //         console.log('Number 1 is higher than number 2')
+    //     } else {
+    //         return num1 + num2
+    //     }
+    // };
+    // console.log(addIncreasedNumbers(100, 100));
+    //Bai4:
+    // function addNumbers() {
+    //     firstNum = 4;
+    //     secondNum = 8;
+    //     result = firstNum + secondNum;
+    //     return result;
+    // }
+    // result = 0;
+    // alert(result)
+    // result = addNumbers();
+    // alert(result);
+    //Bai5:
+    let footballStars = new Array('Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe' , 'Regulus');
+    let zodiac = ['Ursa Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major' , 'Leo'];
+    function getZodiac(name){
+        if (footballStars.indexOf(name) !== -1){
+            return zodiac[footballStars.indexOf(name)]
+        } else {
+            alert('Could not find star')
+        }
+    };
+    let name = prompt('Please input your football stars')
+    console.log(getZodiac(name))
+</script>
+</body>
+</html>

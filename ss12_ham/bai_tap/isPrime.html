@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isPrime</title>
+</head>
+<body>
+<script>
+    function isPrime(number){
+        let num = Math.floor(Math.sqrt(number));
+        let cnt = 0
+        for (let i=2 ; i<=num ; i++){
+            if(number%i === 0){
+                cnt++
+            }
+        };
+        if (cnt === 0){
+            return true
+        } else {
+            return false
+        }
+    };
+    let primeNumber=[]
+    for (let i=2 ; i<1000 ; i++){
+        if(isPrime(i)){
+            primeNumber.push(i)
+        }
+    };
+    console.log(primeNumber)
+</script>
+</body>
+</html>

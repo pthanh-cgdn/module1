@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote TV</title>
+</head>
+<body>
+<script>
+    let hash = 'abc123'
+    let Remote = function(code){
+        this.code = code;
+        this.connectToTV = function(tv){
+            if(tv.code === this.code){
+                this.tv = tv
+            }
+        }
+        this.setChannel = function(channel){
+            this.tv.channel = channel
+        }
+        this.setVolume = function(volume){
+            this.tv.volume = volume
+        }
+    }
+    let TV = function(channel, volume, status){
+        this.code = hash
+        this.channel = channel;
+        this.volume = volume;
+        this.status = status;
+        this.turnOn = function(){
+            this.status = true
+        }
+        this.setChannel = function(channel){
+            this.channel = channel
+        };
+        this.setVolume = function(volume){
+            this.volume = volume
+        };
+        this.getChannel = function(){
+            return this.channel
+        }
+        this.getVolume = function(){
+            return this.volume
+        }
+    }
+    let sony = new TV;
+    let remote = new Remote(hash);
+    remote.connectToTV(sony);
+    console.log(remote.tv);
+    sony.turnOn();
+    sony.setChannel(7);
+    console.log(sony.getChannel());
+
+    remote.setChannel(3);
+    remote.setVolume(12);
+    console.log(sony.getChannel());
+    console.log(sony.getVolume());
+</script>
+</body>
+</html>

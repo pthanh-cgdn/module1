@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat & Mouse</title>
+</head>
+<body>
+<script>
+    let Mouse = function(name,weight,status,speed){
+        this.name = name
+        this.weight = weight
+        this.status = status
+        this.hail = function(){
+            return 'Chit, chit'
+        }
+        this.speed = speed
+        this.getStatus = function(){
+            return this.status
+        }
+        this.setStatus = function(newStatus){
+            this.status = newStatus
+        }
+        this.getSpeed = function(){
+            return this.speed
+        }
+        this.setSpeed = function(newSpeed){
+            this.speed = newSpeed
+        }
+        this.getWeight = function(){
+            return this.weight
+        }
+        this.setWeight = function(newWeight){
+            this.weight = newWeight
+        }
+
+    };
+    let Cat = function(name,weight,status,speed){
+        this.name = name
+        this.weight = weight
+        this.status = status
+        this.hail = function(){
+            return 'Meow, Meow'
+        }
+        this.speed = speed
+        this.getStatus = function(){
+            return this.status
+        }
+        this.setStatus = function(newStatus){
+            this.status = newStatus
+        }
+        this.getSpeed = function(){
+            return this.speed
+        }
+        this.setSpeed = function(newSpeed){
+            this.speed = newSpeed
+        }
+        this.getWeight = function(){
+            return this.weight
+        }
+        this.setWeight = function(newWeight){
+            this.weight = newWeight
+        }
+        this.catchMouse = function(mouse){
+            return (this.speed > mouse.speed)
+        }
+        this.eatMouse = function(mouse){
+            if(mouse.status || this.catchMouse(mouse)){
+                mouse.status  = false
+                this.weight  += mouse.weight
+            }
+        }
+    }
+    let tom = new Cat();
+    let jerry = new Mouse();
+    tom.setWeight(10);
+    tom.setSpeed(30);
+    tom.setStatus(true);
+    jerry.setWeight(2);
+    jerry.setSpeed(20);
+    jerry.setStatus(true);
+    tom.catchMouse(jerry);
+    tom.eatMouse(jerry);
+    console.log(tom.weight);
+    console.log(jerry.status);
+</script>
+</body>
+</html>

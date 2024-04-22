@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam & Eva</title>
+</head>
+<body>
+<script>
+    const DEFAULT_APPLE_WEIGHT = 10;
+    const DEFAULT_HUMAN_WEIGHT = 1000;
+    let Apple = function(){
+        this.weight = DEFAULT_APPLE_WEIGHT;
+        this.isEmpty = function(){
+            return this.weight === 0
+        };
+        this.getWeight = function(){
+            return this.weight
+        };
+        this.decrease = function(){
+            this.weight--
+        }
+    };
+    let Human = function(){
+        // let apple = new Apple
+        this.name = '';
+        this.gender = ''
+        this.weight = DEFAULT_HUMAN_WEIGHT;
+
+        this.isMale = function(){
+            return this.gender === 'male'
+        }
+        this.setGender = function(boo){
+            this.gender = boo
+        }
+        this.checkApple = function(apple){
+            return !(apple.weight===0)
+        }
+        this.eatApple = function(apple){
+            if(this.checkApple(apple)){
+                this.setWeight(this.weight+1);
+                apple.weight = apple.weight-1
+            }
+        }
+        this.say = function(str){
+            return str
+        }
+        this.getName = function(){
+            return this.name
+        }
+        this.setName = function(str){
+            this.name = str
+        }
+        this.getWeight = function(){
+            return this.weight
+        }
+        this.setWeight = function(num){
+            this.weight = num
+        }
+    }
+    let redApple = new Apple();
+    let adam = new Human();
+    adam.setName('Adam');
+    adam.setGender('Male');
+    adam.setWeight(1500)
+    let eva = new Human();
+    eva.setName('Eva');
+    eva.setGender('Female');
+    eva.setWeight(1200)
+    adam.eatApple(redApple);
+    eva.eatApple(redApple);
+    console.log(adam.weight);
+    console.log(eva.weight);
+    console.log(redApple.weight);
+</script>
+</body>
+</html>

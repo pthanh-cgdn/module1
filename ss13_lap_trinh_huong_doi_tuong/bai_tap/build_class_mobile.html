@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build Class Mobile</title>
+</head>
+<body>
+<script>
+    function Mobile(name,batteryPercentage){
+        this.name = name
+        this.bateryPercentage = batteryPercentage;
+        this.receivedMessageStore = []
+        this.sentMessageStore = [];
+        this.message = ''
+        this.isOn = this.bateryPercentage !== 0;
+        this.switch = function(){
+            if (this.bateryPercentage > 0) {
+                this.bateryPercentage--
+                this.isOn = !this.isOn
+            }
+        }
+        this.chargeMobile = function(){
+            this.bateryPercentage = 100
+        }
+        this.draftMessage = function(msg) {
+            this.message = msg
+        }
+        this.receiveMessage = function(msg, mobile){
+            if (this.isOn) {
+                this.bateryPercentage--;
+                this.receivedMessageStore.unshift([mobile.name,msg]);
+            }
+        }
+        this.sentMessage = function(msg, mobile){
+            if (this.isOn) {
+                this.bateryPercentage--;
+                this.draftMessage(msg);
+                this.sentMessageStore.unshift([mobile.name,this.message]);
+                this.draftMessage('');
+                mobile.receiveMessage(msg, this)
+            }
+        }
+        this.readReceivedMessage = function(number){
+            if (this.isOn) {
+                this.bateryPercentage--
+                return this.receivedMessageStore[number]
+            }
+        }
+        this.readSentMessage = function(number){
+            if (this.isOn) {
+                this.bateryPercentage--
+                return this.sentMessageStore[number]
+            }
+        }
+    }
+    let nokia = new Mobile('nokia',0);
+    let iphone = new Mobile('iphone',1);
+    nokia.sentMessage('Young men, you have no chance', iphone);
+    console.log(nokia.readSentMessage(0));
+    console.log(iphone.readReceivedMessage(0));
+</script>
+</body>
+</html>

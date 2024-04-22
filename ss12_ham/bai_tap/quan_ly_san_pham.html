@@ -3,57 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Quan ly san pham</title>
+    <style>
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            padding: 20px;
+            border: 1px solid black;
+        }
+        th{
+            font-family: 'Patua One', cursive;
+            font-size:16px;
+            font-weight:400;
+            color:#fff;
+            text-align:center;
+            padding:20px;
+            background-color: #d61b06;
+            border-color: white;
+        }
+        td{
+            font-family: 'Open Sans', sans-serif;
+            font-weight:400;
+            color:#5f6062;
+            font-size:13px;
+            padding:20px 20px 20px 20px;
+            border-bottom:1px solid #e0e0e0;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-<div id='showTable'></div>
+<div id="myTable"></div>
 <script>
     let product = ['Apple','Samsung','Xiaomi','HTC','Sony'];
+    let newProduct =''
+    let text = ''
     buildProductTable();
     function buildProductTable() {
-        document.write('<table>');
-        document.write('<tr>');
-        document.write('<th>STT');
-        document.write('</th>');
-        document.write('<th>Name');
-        document.write('</th>');
-        document.write('<th>Edit');
-        document.write('</th>');
-        document.write('<th>Delete');
-        document.write('</th>');
-        document.write('</tr>');
+        text =
+            '<table> ' +
+                '<tr> ' +
+                '<th>STT ' +
+                '</th>'+
+                '<th>Name'+
+                '</th>'+
+        '<th>Edit' +
+        '</th>' +
+        '<th>Delete'+
+        '</th>' +
+        '</tr>'
         for (let i = 1; i <= product.length; i++) {
-            document.write('<tr>');
-            document.write('<td>' + i + '</td>');
-            document.write('<td>' + product[i - 1] + '</td>');
-            document.write('<td onclick="editProduct('+i+')"><input type="button" value="Edit"</td>');
-            document.write('<td onclick="deleteProduct('+i+')"><input type="button" value="delete"</td>');
-            document.write('</tr>')
+            text += '<tr>'
+            text += '<td>' + i + '</td>'
+            text = text + '<td>' + product[i - 1] + '</td>'
+            text = text + '<td onclick="editProduct('+i+')"><input type="button" value="Edit"</td>'
+            text = text +'<td onclick="deleteProduct('+i+')"><input type="button" value="delete"</td>'
+            text += '</tr>'
         }
-        document.write('</table>');
-        document.write('<form><button type="button" onclick="addNewProduct()">Add new product</button></form>');
+        text += '</table>'
+        text += '<form><button type="button" onclick="addNewProduct()">Add new product</button></form>'
+        document.getElementById('myTable').innerHTML = text
     };
     // buildProductTable(product);
     function addNewProduct(){
         newProduct = prompt("Please add new product's name");
         product.push(newProduct);
-        // document.getElementById('myTable').innerHTML= '';
-        document.getElementsByTagName("body")[0].innerHTML = "";
         buildProductTable();
         alert('Add new product');
         console.log(product)
     };
     function deleteProduct(num){
         product.splice(num-1,1);
-        // document.getElementById('myTable').innerHTML=buildProductTable();
-        document.getElementsByTagName("body")[0].innerHTML = "";
         buildProductTable();
         alert('complete delete a product');
         console.log(product)
     }   ;
     function editProduct(num){
         product[num-1]=prompt(value = product[num-1])
-        // document.getElementById('myTable').innerHTML=buildProductTable();
-        document.getElementsByTagName("body")[0].innerHTML = "";
         buildProductTable();
         alert('complete edit a product');
         console.log(product)

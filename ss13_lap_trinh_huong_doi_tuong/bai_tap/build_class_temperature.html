@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Temperature</title>
+</head>
+<body>
+<script>
+    let Temperature = function(temp){
+        this.temperature = temp;
+        this.isCelcius = true;
+        this.getTemperature = function(){
+            return temp
+        }
+        this.toFahrenheit = function() {
+            return temp * 1.8 + 32
+        }
+    }
+    let temperature = new Temperature(25);
+    console.log(temperature.toFahrenheit())
+</script>
+</body>
+</html>

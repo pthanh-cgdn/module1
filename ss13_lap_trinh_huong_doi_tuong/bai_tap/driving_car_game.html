@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Driving a car</title>
+</head>
+<body onkeydown="gameBoard.moveAuto(event)">
+<canvas id="myCanvas" width="1200px" height="600px" style="border:1px solid #d3d3d3;">
+</canvas>
+<script>
+    const GAMEBOARD_WIDTH = 1200;
+    const GAMEBOARD_HEIGHT = 600;
+    const GAMEBOARD_OBSTACLES = 5;
+    const GAMEBOARD_DIAMOND = 5;
+
+    const ORIENTATION_LEFT = "left";
+    const ORIENTATION_RIGHT = "right";
+    const ORIENTATION_UP = "up";
+    const ORIENTATION_DOWN = "down";
+
+    const AUTO_WIDTH = 120; //3400
+    const AUTO_HEIGHT = 60; //1500
+
+    const BARRIER_WIDTH = 60; //512
+    const BARRIER_HEIGHT = 60; //512
+    const DIAMOND_WIDTH = 60; //512
+    const DIAMOND_HEIGHT = 60; //512
+
+
+    const DEFAULT_AUTO_X_POSITION = 0;
+    const DEFAULT_AUTO_Y_POSITION = 60;
+    const DEFAULT_AUTO_ORIENTATION = ORIENTATION_RIGHT;
+
+    const DEFAULT_AUTO_SPEED = 30;
+    let totalBarrier = [];
+    let totalDiamond = []
+    let barrier = undefined;
+    let diamond = undefined;
+    let point = 0
+    let Auto = function() {
+        this.height = AUTO_HEIGHT;
+        this.width = AUTO_WIDTH;
+        this.xPosition = DEFAULT_AUTO_X_POSITION;
+        this.yPosition = DEFAULT_AUTO_Y_POSITION;
+        this.orientation = DEFAULT_AUTO_ORIENTATION;
+        this.speed = DEFAULT_AUTO_SPEED;
+        this.buildImage = function () {
+            this.image = this.orientation + '.png';
+        }
+        this.buildImage();
+        this.move = function () {
+            switch (this.orientation) {
+                case ORIENTATION_DOWN:
+                    (this.yPosition + this.speed) > GAMEBOARD_HEIGHT ? this.yPosition = 0 : this.yPosition = this.yPosition + this.speed;
+                    break;
+                case ORIENTATION_UP:
+                    (this.yPosition - this.speed) < 0 ? this.yPosition = GAMEBOARD_HEIGHT : this.yPosition = this.yPosition - this.speed;
+                    break;
+                case ORIENTATION_LEFT:
+                    (this.xPosition - this.speed) < 0 ? this.xPosition = GAMEBOARD_WIDTH : this.xPosition = this.xPosition - this.speed;
+                    break;
+                case ORIENTATION_RIGHT:
+                    (this.xPosition + this.speed) > GAMEBOARD_WIDTH ? this.xPosition = 0 : this.xPosition = this.xPosition + this.speed;
+                    break;
+            }
+        }
+        this.show = function (ctx) {
+            let image = new Image();
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition, AUTO_WIDTH, AUTO_HEIGHT);
+            };
+            image.src = './images/' + this.image;
+        }
+
+    }
+    let Barrier = function(){
+        this.height = BARRIER_HEIGHT;
+        this.width = BARRIER_WIDTH;
+        this.xPosition = 0;
+        this.yPosition = 0;
+        this.show = function (ctx) {
+            let image = new Image();
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition,BARRIER_WIDTH,BARRIER_HEIGHT);
+            };
+            image.src = './images/barrier.png';
+        }
+    }
+    function createBarrier(){
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        barrier = new Barrier();
+        barrier.xPosition = (Math.floor(Math.random()*(GAMEBOARD_WIDTH/BARRIER_WIDTH-4))+2)*BARRIER_WIDTH;
+        barrier.yPosition = (Math.floor(Math.random()*(GAMEBOARD_HEIGHT/BARRIER_HEIGHT-4))+2)*BARRIER_HEIGHT;
+        barrier.show(ctx);
+        totalBarrier.push(barrier);
+    }
+    let Diamond = function(){
+        this.height = DIAMOND_HEIGHT;
+        this.width = DIAMOND_WIDTH;
+        this.xPosition = 0;
+        this.yPosition = 0;
+        this.show = function (ctx) {
+            let image = new Image();
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition,DIAMOND_WIDTH,DIAMOND_HEIGHT);
+            };
+            image.src = './images/diamond.png';
+        }
+    };
+    function createDiamond(){
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        diamond = new Diamond();
+        diamond.xPosition = (Math.floor(Math.random()*(GAMEBOARD_WIDTH/BARRIER_WIDTH-4))+2)*BARRIER_WIDTH;
+        diamond.yPosition = (Math.floor(Math.random()*(GAMEBOARD_HEIGHT/BARRIER_HEIGHT-4))+2)*BARRIER_HEIGHT;
+        diamond.show(ctx);
+        totalDiamond.push(diamond);
+    }
+
+    function isCrash(obj,arr){
+        for (let i=0 ; i<arr.length ; i++) {
+            if ((arr[i].xPosition <= obj.xPosition + obj.width)
+                && (arr[i].xPosition + arr[i].height >= obj.xPosition)
+                && (arr[i].yPosition <= obj.yPosition + obj.height)
+                && (arr[i].yPosition + arr[i].height >= obj.yPosition)
+            ) {
+                return i
+            }
+        }
+        return -1
+    }
+
+    function GameBoard() {
+        totalBarrier = [];
+        totalDiamond = []
+        this.auto = new Auto();
+        this.ctx = undefined;
+        this.start = function(){
+            this.ctx = document.getElementById('myCanvas').getContext('2d');
+            this.auto.show(this.ctx);
+            for (let i=0 ; i<GAMEBOARD_OBSTACLES ; i++) {
+                createBarrier()
+            }
+            for (let i=0 ; i<GAMEBOARD_DIAMOND ; i++) {
+                createDiamond()
+            }
+        };
+        this.render = function(){
+            this.ctx.clearRect(0, 0, GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
+            for (let i=0 ; i<totalBarrier.length ; i++){
+                totalBarrier[i].show(this.ctx)
+            }
+            for (let i=0 ; i<totalDiamond.length ; i++){
+                totalDiamond[i].show(this.ctx)
+            }
+            this.auto.show(this.ctx);
+        };
+        this.moveAuto = function(event) {
+            let orientation = '';
+            switch (event.key) {
+                case 'Control':
+                    this.auto.speed < 100 ? this.auto.speed += 20 : this.auto.speed = 100;
+                    break;
+                case 'ArrowDown':
+                    orientation = ORIENTATION_DOWN;
+                    break;
+                case 'ArrowUp':
+                    orientation = ORIENTATION_UP;
+                    break;
+                case 'ArrowLeft':
+                    orientation = ORIENTATION_LEFT;
+                    break;
+                case 'ArrowRight':
+                    orientation = ORIENTATION_RIGHT;
+                    break;
+            }
+            if (isCrash(this.auto,totalBarrier)!==-1 || totalDiamond.length===0) {
+                alert('Game End. You score is: '+point)
+            } else {
+                if (isCrash(this.auto,totalDiamond)!==-1) {
+                    point++;
+                    totalDiamond.splice(isCrash(this.auto, totalDiamond), 1);
+                    alert('Congrat!You won a point!!!. Your score is: '+point);
+                }
+                if (orientation) {
+                    if (this.auto.orientation !== orientation) {
+                        this.auto.orientation = orientation;
+                    } else {
+                        this.auto.move();
+                    }
+                    this.render();
+                }
+                this.render()
+            }
+        }
+    }
+    let gameBoard = new GameBoard();
+    gameBoard.start()
+</script>
+</body>
+</html>

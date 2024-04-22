@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build Class Date</title>
+</head>
+<body>
+<script>
+    function MyDate(year, month, day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.getYear = function () {
+            return year
+        };
+        this.getMonth = function () {
+            return month
+        };
+        this.getDay = function () {
+            return day
+        };
+        this.setYear = function (year) {
+            this.year = year
+        };
+        this.setMonth = function (month) {
+            this.month = month
+        };
+        this.setDay = function (day) {
+            this.day = day
+        };
+        this.setDate = function (year, month, day) {
+            this.year = year;
+            this.month = month;
+            this.day = day
+        };
+        this.toString = function () {
+            return this.year + '/' + this.month + '/' + this.day
+        }
+    }
+
+    let date = new MyDate(2024, 4, 16);
+    date.setDate(2023, 5, 25);
+    console.log(date.toString());
+    console.log(date.year);
+    console.log(date.month);
+    console.log(date.day);
+    console.log(date.toString())
+
+</script>
+</body>
+</html>

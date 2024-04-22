@@ -40,16 +40,13 @@
                         }
                     }
                 }
-                ;
                 if (cnt === 0) {
                     alert('No winner found');
                     break
                 }
-                ;
                 x = prompt('Please re-input x');
                 y = prompt('Please re-input y');
             }
-            ;
             document.getElementById('R' + x + 'C' + y).innerHTML = a;
             findWinner();
             if (winner === 'A') {
@@ -76,7 +73,7 @@
                     break;
                 }
             }
-        };
+        }
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 5; j++) {
                 if (document.getElementById('R' + i + 'C' + j).innerHTML === document.getElementById('R' + (i+1) + 'C' + j).innerHTML &&
@@ -91,10 +88,8 @@
                     break;
                 }
             }
-        };
-
+        }
     }
-
 </script>
 
 </body>

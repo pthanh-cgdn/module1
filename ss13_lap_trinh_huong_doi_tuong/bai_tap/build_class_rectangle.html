@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build Rectangle Class</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;">
+</canvas>
+<script>
+    let Rectangle = function(x,y,height,width) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+        this.getArea = function () {
+            return height * width
+        };
+        this.getPerimeter = function () {
+            return (height + width) * 2
+        };
+    }
+    function getRandomHex(){
+        return Math.floor(Math.random()*255);
+    }
+    function getRandomColor(){
+        let red = getRandomHex();
+        let blue = getRandomHex();
+        let green = getRandomHex();
+        return "rgb(" + red + "," + blue + "," + green +")";
+    }
+    function drawRectangle (){
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        let x=Math.floor(Math.random()*window.innerWidth);
+        let y=Math.floor(Math.random()*window.innerWidth);
+        let height=Math.floor(Math.random()*window.innerWidth);
+        let width=Math.floor(Math.random()*window.innerWidth);
+        let rectangle = new Rectangle(x,y,height,width);
+        let color = getRandomColor();
+        ctx.beginPath();
+        ctx.moveTo(rectangle.x,rectangle.y);
+        ctx.lineTo(rectangle.x+rectangle.width,rectangle.y);
+        ctx.fillStyle = color;
+        // ctx.strokeStyle = color;
+        ctx.lineTo(rectangle.x+rectangle.width,rectangle.y+rectangle.height);
+        ctx.lineTo(rectangle.x,rectangle.y+rectangle.height);
+        ctx.lineTo(rectangle.x,rectangle.y);
+        ctx.fill();
+        // ctx.stroke()
+    }
+    // let rectangle = new Rectangle(400,300,200,400);
+    function createMultiRec() {
+        for (let i = 0; i < 30; i++) {
+            drawRectangle()
+        }
+    }
+    createMultiRec()
+</script>
+</body>
+</html>

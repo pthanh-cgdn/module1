@@ -9,18 +9,14 @@
     let quan = parseInt(prompt('Nhập số lượng số nguyên tố cần in ra'));
     let cnt=0;
     let num=2;
-    function isPrime(number){
-        let n =0;
-        for(let i=2;i<=Math.floor(Math.sqrt(number)); i+=1){
-            if (number%i === 0){
+    function isPrime(number) {
+        let n = 0;
+        for (let i = 2; i <= Math.floor(Math.sqrt(number)); i += 1) {
+            if (number % i === 0) {
                 n += 1;
             }
         }
-        if (n===0){
-            return true
-        } else{
-            return false
-        }
+        return n === 0;
     }
     while(cnt<quan){
         if (isPrime(num)){

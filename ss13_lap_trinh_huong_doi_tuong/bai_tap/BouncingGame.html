@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bouncing Game</title>
+</head>
+<body onkeydown = "movePaddle(event)">
+<canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">></canvas>
+<script>
+    const RADIUS = 5;
+    const XPOSITION = 205;
+    const YPOSITION = 205;
+    const SPEED = 10;
+    const ANGLE = 1//(y/x)
+    const YPADDLE = 590
+    const PADDLE_LENGTH = 120
+    const PADDLE_HEIGHT = 10
+
+    const PADDLE_SPEED = 40
+    let changeDirectionX = 1;
+    let changeDirectionY = 1;
+    let point = 0
+    let Circle = function (x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius
+    }
+    let circle = new Circle(XPOSITION, YPOSITION, RADIUS);
+    function createCircle() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = 'grey'
+        ctx.fill()
+    }
+    function clear(x,y,width,length) {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        ctx.beginPath();
+        ctx.clearRect(x, y, width, length);
+    }
+    let Rectangle = function(x,y,height,width) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+        this.getArea = function () {
+            return height * width
+        };
+        this.getPerimeter = function () {
+            return (height + width) * 2
+        }
+    }
+    let paddle = new Rectangle(0,YPADDLE,PADDLE_HEIGHT,PADDLE_LENGTH)
+    function drawRectangle (x,y,height,width){
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(x,y);
+        ctx.lineTo(x+width,y);
+        ctx.fillStyle = "blue";
+        ctx.lineTo(x + width,y + height);
+        ctx.lineTo(x,y + height);
+        ctx.lineTo(x,y);
+        ctx.fill();
+    }
+    function movePaddle(event) {
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        switch(event.code){
+            case 'ArrowLeft':
+                paddle.x <= 0 ? paddle.x = 0 : paddle.x -= PADDLE_SPEED;
+                break;
+            case 'ArrowRight':
+                paddle.x > 800-PADDLE_LENGTH-PADDLE_SPEED ? paddle.x = 800-PADDLE_LENGTH : paddle.x += PADDLE_SPEED;
+                break;
+        }
+        clear(0,590,800,10);
+        drawRectangle(paddle.x,paddle.y,PADDLE_HEIGHT ,PADDLE_LENGTH)
+    }
+    function isEndGame(){
+        if (circle.y > 600 - RADIUS - paddle.height){
+            alert("Game End. Your score is "+ point)
+            return true
+        } else {
+            return false
+        }
+    }
+    function moveCircle() {
+        if (!isEndGame()) {
+            if (circle.x > 0 && circle.x < 800 && circle.y > 0 && circle.y < 600) {
+                if (circle.x <= RADIUS || circle.x >= 800 - RADIUS) {
+                    changeDirectionX = -changeDirectionX
+                }
+                if ((circle.y >= 600 - RADIUS - paddle.height && circle.x >= paddle.x && circle.x <= paddle.x + paddle.width)|| circle.y <= RADIUS) {
+                    changeDirectionY = -changeDirectionY;
+                    if(circle.y >= 600 - RADIUS - paddle.height && circle.x >= paddle.x && circle.x <= paddle.x + paddle.width){
+                        point++
+                    }
+                }
+                circle.x += SPEED * changeDirectionX
+                circle.y += SPEED * ANGLE * changeDirectionY;
+                clear(0, 0, 800, 590);
+                createCircle();
+            }
+            setTimeout(moveCircle, 200)
+        }
+    }
+    drawRectangle(paddle.x,paddle.y,PADDLE_HEIGHT ,PADDLE_LENGTH);
+    moveCircle()
+</script>
+</body>
+</html>

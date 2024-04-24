@@ -75,13 +75,13 @@
         buildProductTable();
         alert('Add new product');
         console.log(product)
-    };
+    }
     function deleteProduct(num){
         product.splice(num-1,1);
         buildProductTable();
         alert('complete delete a product');
         console.log(product)
-    }   ;
+    }
     function editProduct(num){
         product[num-1]=prompt(value = product[num-1])
         buildProductTable();

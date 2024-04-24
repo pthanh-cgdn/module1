@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ghép taxi</title>
+</head>
+<body>
+<script>
+    // Tối đa 4 người 1 nhóm, 1 nhóm phải ngồi chung taxi
+    // tìm số lượng taxi tối thiểu để chở:
+    // Nếu 1 nhóm có 4 người thì gán 1 taxi; nếu nhóm có 3 người thì tìm nhóm có 1 người,
+    // nếu nhóm có 2 người thì tìm nhóm có 2 người nếu ko có thì 1 người
+    function findMinTaxi(arr,n){
+        arr = arr.sort()
+        let numTaxi = 0
+        while (arr.length !== 0){
+            while(arr[arr.length-1] + arr[0] <= n){
+                arr[arr.length-1] += arr[0]
+                arr.shift()
+            }
+            arr.pop();
+            numTaxi++
+        }
+        return numTaxi
+    }
+    console.log(findMinTaxi([2 ,2 ,4 ,3, 2, 3],4))
+</script>
+</body>
+</html>

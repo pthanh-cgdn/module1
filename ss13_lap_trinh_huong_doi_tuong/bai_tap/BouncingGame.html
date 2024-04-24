@@ -86,10 +86,10 @@
     function moveCircle() {
         if (!isEndGame()) {
             if (circle.x > 0 && circle.x < 800 && circle.y > 0 && circle.y < 600) {
-                if (circle.x <= RADIUS || circle.x >= 800 - RADIUS) {
+                if (circle.x < SPEED || circle.x > 800 - SPEED) {
                     changeDirectionX = -changeDirectionX
                 }
-                if ((circle.y >= 600 - RADIUS - paddle.height && circle.x >= paddle.x && circle.x <= paddle.x + paddle.width)|| circle.y <= RADIUS) {
+                if ((circle.y >= 600 - paddle.height - SPEED && circle.x >= paddle.x && circle.x <= paddle.x + paddle.width)|| circle.y <= SPEED) {
                     changeDirectionY = -changeDirectionY;
                     if(circle.y >= 600 - RADIUS - paddle.height && circle.x >= paddle.x && circle.x <= paddle.x + paddle.width){
                         point++
@@ -103,7 +103,7 @@
             setTimeout(moveCircle, 200)
         }
     }
-    drawRectangle(paddle.x,paddle.y,PADDLE_HEIGHT ,PADDLE_LENGTH);
+    drawRectangle(paddle.x,paddle.y,PADDLE_HEIGHT,PADDLE_LENGTH);
     moveCircle()
 </script>
 </body>

@@ -113,34 +113,34 @@
     // }
     // console.log(arr);
     //Bai8: sap xep mang: -nếu a > b thì index[a] > index[b]
-    // let arr = new Array(10);
-    // for (let i=0 ; i<10 ; i++){
-    //     arr[i] = Math.floor((Math.random()-0.5)*50)
-    // };
-    // let i = 0;
-    // console.log(arr);
-    // while ( i<arr.length){
-    //     if (arr[i] < arr[i+1]){
-    //         temp = arr[i];
-    //         arr[i] = arr[i+1];
-    //         arr[i+1] = temp;
-    //         i=0;
-    //     } else {
-    //         i = i+1
-    //     }
-    // }
-    // console.log(arr);
+    let arr = new Array(10);
+    let i = 0;
+    for (let i=0 ; i<10 ; i++){
+        arr[i] = Math.floor((Math.random()-0.5)*50)
+    }
+    console.log(arr);
+    while ( i<arr.length){
+        if (arr[i] > arr[i+1]){
+            temp = arr[i];
+            arr[i] = arr[i+1];
+            arr[i+1] = temp;
+            i<0? i=0: i--
+        } else {
+            i++
+        }
+    }
+    console.log(arr);
     //Bai9:
-    let a = new Array(10);
-    for (let i=0 ; i<10 ; i++){
-        a[i] = Math.floor((Math.random()-0.5)*50)
-    };
-    let b = new Array(10);
-    for (let i=0 ; i<10 ; i++){
-        b[i] = Math.floor((Math.random()-0.5)*50)
-    };
-    let c=a.concat(b);
-    console.log(c)
+    // let a = new Array(10);
+    // for (let i=0 ; i<10 ; i++){
+    //     a[i] = Math.floor((Math.random()-0.5)*50)
+    // };
+    // let b = new Array(10);
+    // for (let i=0 ; i<10 ; i++){
+    //     b[i] = Math.floor((Math.random()-0.5)*50)
+    // };
+    // let c=a.concat(b);
+    // console.log(c)
 </script>
 </body>
 </html>

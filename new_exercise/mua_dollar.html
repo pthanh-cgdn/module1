@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trade USDVND</title>
+</head>
+<body>
+<script>
+    //Mua giá rẻ nhất sau đó bán giá cao nhất với điều kiện mua trước khi bán;
+    //B1: Tìm giá trị lớn nhất trong chuỗi, sau đó tìm giá trị nhỏ nhất trong chuỗi từ vị trí bắt đầu đến vị trí lớn nhất
+    //B2: Mua USD sau đó Bán
+    //Pseudo-code:
+    // Find Max với Max ở vị trí lớn nhất nếu có nhiều giá trị max
+    // Tìm giá trị min từ vị trí đầu tiên đến vị trí max
+    // Nếu min = max thì trả về N
+    // Nếu min < max thì trả về Floor(N/min)*max + N%min
+    let maxIndex = 0;
+    let minIndex = 0;
+    let maxValue = []
+    function findMaxIndex(arr){
+        let max = arr[0];
+        let maxIndex = 0;
+        for (let i=0 ; i<arr.length ; i++){
+            if(max <= arr[i]){
+                maxIndex = i
+            }
+        }
+        return maxIndex
+    }
+    function findMinIndex(arr,index){
+        let min = arr[0];
+        let minIndex = 0;
+        for (let i=0; i<=index; i++){
+            if (min >= arr[i]){
+                minIndex = i
+            }
+        }
+        return minIndex
+    }
+    function maximizeUsdTrading(arr,n){
+        maxIndex = findMaxIndex(arr);
+        minIndex = findMinIndex(arr,maxIndex);
+        maxValue = []
+        maxValue.push(Math.floor(n/arr[minIndex])*arr[maxIndex] + n%arr[minIndex]);
+        while (maxIndex+1 !== arr.length){
+            arr = arr.splice(0,maxIndex+1)
+            maximizeUsdTrading(arr,n)
+        }
+        return maxValue[findMaxIndex(maxValue)]
+    }
+    console.log(maximizeUsdTrading([25000,26000,25500,27000,23500,26000],26000))
+
+</script>
+</body>
+</html>

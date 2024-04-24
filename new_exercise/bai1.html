@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai kiem tra tan suat xuat hien</title>
+</head>
+<body>
+<script>
+  let arrUnique = [];
+  function checkFrequencyOfElement(arr) {
+    let cntChar = new Array(arr.length)
+    for (let i=0; i < arr.length; i++){
+      cntChar[i] = 0
+    }
+    for (let i = 0; i < arr.length; i++) {
+      if (arrUnique.indexOf(arr[i]) === -1) {
+        arrUnique.push(arr[i])
+      } else {
+        cntChar[arrUnique.indexOf(arr[i])]++
+      }
+    }
+    for (let i = 1; i < arrUnique.length; i++) {
+      if (cntChar[i] !== cntChar[0]) {
+        return false
+      }
+    }
+    return true
+  }
+  console.log(checkFrequencyOfElement([4, 3, 2, 1, 4, 2, 3, 1,1, 5,3,2]));
+  console.log(arrUnique);
+</script>
+</body>
+</html>

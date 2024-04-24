@@ -40,16 +40,32 @@
                 mobile.receiveMessage(msg, this)
             }
         }
-        this.readReceivedMessage = function(number){
+        this.readReceivedMessage = function(mobile,n){
             if (this.isOn) {
                 this.bateryPercentage--
-                return this.receivedMessageStore[number]
+                for (let i=0; i<this.receivedMessageStore.length; i++){
+                    if(this.receivedMessageStore[i][0]===mobile){
+                        if (n===0){
+                            return this.receivedMessageStore[i];
+                        } else{
+                            n--
+                        }
+                    }
+                }
             }
         }
-        this.readSentMessage = function(number){
+        this.readSentMessage = function(mobile,n){
             if (this.isOn) {
                 this.bateryPercentage--
-                return this.sentMessageStore[number]
+                for (let i=0; i<this.sentMessageStore.length; i++){
+                    if(this.sentMessageStore[i][0]===mobile){
+                        if (n===0){
+                            return this.sentMessageStore[i];
+                        } else{
+                            n--
+                        }
+                    }
+                }
             }
         }
     }

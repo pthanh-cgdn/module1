@@ -40,17 +40,15 @@
         ctx.beginPath();
         ctx.moveTo(rectangle.x,rectangle.y);
         ctx.lineTo(rectangle.x+rectangle.width,rectangle.y);
-        ctx.fillStyle = color;
-        // ctx.strokeStyle = color;
+        ctx.strokeStyle = color;
         ctx.lineTo(rectangle.x+rectangle.width,rectangle.y+rectangle.height);
         ctx.lineTo(rectangle.x,rectangle.y+rectangle.height);
         ctx.lineTo(rectangle.x,rectangle.y);
-        ctx.fill();
-        // ctx.stroke()
+        ctx.stroke();
     }
     // let rectangle = new Rectangle(400,300,200,400);
     function createMultiRec() {
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 100; i++) {
             drawRectangle()
         }
     }

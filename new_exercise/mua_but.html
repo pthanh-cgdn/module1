@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mua Bút</title>
+</head>
+<body>
+<script>
+    function buyPen(x,y,s){
+        let floorNum = Math.floor(s/(x+y))*x;
+        let ceilNum = Math.floor(s/(x+y)+1)*x;
+        for (let i=floorNum ; i<=ceilNum; i++){
+            if (i + Math.floor(i*y/x) >= s){
+                return i
+            }
+        }
+    }
+    console.log(buyPen(4,2,11))
+</script>
+</body>
+</html>

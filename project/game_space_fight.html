@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Space fight</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1200px" height="800px" style="border:1px solid #d3d3d3; background-color: black"></canvas>
+<script>
+    const GAMEBOARD_WIDTH = 1200;
+    const GAMEBOARD_HEIGHT = 800;
+    const SHIP_HEIGHT = 80;
+    const SHIP_WIDTH = 80;
+    const SHIP_SPEED = 10;
+    const DEFAULT_ORIENTATION = 'right'
+    let changeDirection = 1;
+    let ufo = undefined;
+    let totalUfo=[]
+    let cnt = 0;
+
+    const UFO_HEIGHT = 40;
+    const UFO_WIDTH = 40;
+    const UFO_SPEED = 10;
+
+    const BOMB_HEIGHT = 20;
+    const BOMB_WIDTH = 20;
+    class Bomb {
+        constructor(bombType,numberBullet,isLaser,speed,x,y) {
+            this.bombType = bombType;
+            this.numberBullet = numberBullet;
+            this.isLaser = isLaser;
+            this.speed = speed;
+            this.xPosition = x;
+            this.yPosition = y;
+            this.bulletPosition = []
+            this.bombDirection = 1
+        }
+        show(){
+            let image = new Image();
+            let ctx = document.getElementById("myCanvas").getContext('2d')
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () { 
+                ctx.drawImage(image, xPosition, yPosition, BOMB_WIDTH, BOMB_HEIGHT);
+            };
+            image.src = './images/' + this.bombType+'.jpeg';
+        }
+        fire(){
+            this.bulletPosition = [];
+
+            for (let i=0 ; i<this.numberBullet ; i++){
+                if (this.xPosition > 0 && this.xPosition < GAMEBOARD_WIDTH && this.yPosition > 0 && this.yPosition < GAMEBOARD_HEIGHT) {
+                    this.yPosition -= Math.cos(Math.PI/2 + (-1)^i*i*Math.PI/12)*this.speed*this.bombDirection
+                    this.xPosition += Math.sin(Math.PI/2 + (-1)^i*i*Math.PI/12)*this.speed*this.bombDirection;
+                    this.bulletPosition.push(this.xPosition,this.yPosition);
+                    this.show()
+                }
+            }
+        }
+    }
+    class SpaceShip {
+        constructor(x, y, bomb) {
+            this.xPosition = x;
+            this.yPosition = y;
+            this.height = SHIP_HEIGHT;
+            this.width = SHIP_WIDTH;
+            this.speed = SHIP_SPEED;
+            this.orientation = DEFAULT_ORIENTATION;
+            this.status = true;
+            this.bombDirection = 1;
+            this.bomb = bomb
+            this.bomb.xPosition = this.xPosition + this.width/2 - BOMB_WIDTH/2;
+            this.bomb.yPosition = this.yPosition - BOMB_HEIGHT;
+            this.cnt = 0
+        }
+        show(){
+            let image = new Image();
+            let ctx = document.getElementById("myCanvas").getContext('2d');
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition, SHIP_WIDTH, SHIP_HEIGHT);
+            };
+            image.src ='./images/spaceship2.jpeg'
+        }
+        move(){
+            switch (this.orientation) {
+                case ORIENTATION_DOWN:
+                    this.yPosition > GAMEBOARD_HEIGHT - SHIP_HEIGHT ? this.yPosition = GAMEBOARD_HEIGHT - SHIP_HEIGHT : this.yPosition = this.yPosition + this.speed;
+                    break;
+                case ORIENTATION_UP:
+                    this.yPosition < 0 ? this.yPosition = 0 : this.yPosition = this.yPosition + this.speed;
+                    break;
+                case ORIENTATION_LEFT:
+                    this.xPosition < 0 ? this.xPosition = 0 : this.xPosition = this.xPosition - this.speed;
+                    break;
+                case ORIENTATION_RIGHT:
+                    this.xPosition + SHIP_WIDTH > GAMEBOARD_WIDTH ? this.xPosition = GAMEBOARD_WIDTH - SHIP_WIDTH : this.xPosition = this.xPosition + this.speed;
+                    break;
+            }
+        }
+        fire(){
+            // while(this.bomb.yPosition > 0){
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            this.bomb.fire();
+            }
+    }
+class Ufo{
+        constructor(x,y) {
+            this.xPosition = x;
+            this.yPosition = y;
+            this.height = UFO_HEIGHT;
+            this.width = UFO_WIDTH;
+            this.speed = UFO_SPEED;
+            this.orientation = DEFAULT_ORIENTATION;
+            this.bombDirection = -1;
+        }
+        show() {
+            let image = new Image();
+            let ctx = document.getElementById("myCanvas").getContext('2d');
+            let xPosition = this.xPosition;
+            let yPosition = this.yPosition;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition, UFO_WIDTH, UFO_HEIGHT);
+            };
+            image.src = './images/ufo3.png'
+        }
+        move() {
+            if (this.xPosition < this.speed || this.xPosition > GAMEBOARD_WIDTH - this.speed) {
+                changeDirection = -changeDirection
+            }
+            this.xPosition += this.speed * changeDirection
+        }
+}
+
+function createUfo(x,y){
+    let ctx = document.getElementById('myCanvas').getContext('2d');
+    ufo = new Ufo();
+    ufo.xPosition = x;
+    ufo.yPosition = y;
+    ufo.show(ctx);
+    totalUfo.push(ufo);
+}
+
+function GameBoard() {
+    totalUfo = [];
+    this.spaceShip = new SpaceShip();
+    // this.ctx = undefined;
+    this.start = function(){
+        this.spaceShip.show();
+        for (let i=0 ; i < 5 ; i++) {
+            for (let j=0 ; j < 10 ; j++){
+                createUfo(100 + 80*i,100 + 80*j)
+            }
+        }
+    }
+    this.render = function(){
+        this.ctx.clearRect(0, 0, GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
+        for (let i=0 ; i<totalUfo.length ; i++){
+            totalUfo[i].show()
+        }
+        this.spaceShip.show();
+    };
+    this.moveSpaceShip = function(event) {
+        let orientation = '';
+        switch (event.key) {
+            case 'ArrowDown':
+                orientation = ORIENTATION_DOWN;
+                break;
+            case 'ArrowUp':
+                orientation = ORIENTATION_UP;
+                break;
+            case 'ArrowLeft':
+                orientation = ORIENTATION_LEFT;
+                break;
+            case 'ArrowRight':
+                orientation = ORIENTATION_RIGHT;
+                break;
+        }
+        if (isCrash(this.auto,totalBarrier)!==-1 || totalDiamond.length===0) {
+            alert('Game End. You score is: '+point)
+        } else {
+            if (isCrash(this.auto,totalDiamond)!==-1) {
+                point++;
+                totalDiamond.splice(isCrash(this.auto, totalDiamond), 1);
+                alert('Congrat!You won a point!!!. Your score is: '+point);
+            }
+            if (orientation) {
+                if (this.auto.orientation !== orientation) {
+                    this.auto.orientation = orientation;
+                } else {
+                    this.auto.move();
+                }
+                this.render();
+            }
+            this.render()
+        }
+    }
+}
+let bombEgg = new Bomb('egg',1,false,20);
+    // console.log(bombEgg)
+let spaceShip = new SpaceShip(500,700,bombEgg);
+spaceShip.show();
+// spaceShip.bomb.show();
+// bombEgg.fire()
+// console.log(spaceShip.bomb.speed);
+spaceShip.fire()
+// let ufo = new Ufo(100,100)
+//     let bombBanana = new Bomb(spaceShip,'egg',1,false,20)
+// console.log(spaceShip.yPosition);
+// spaceShip.show();
+// ufo.show()
+//     bombBanana.show()
+</script>
+</body>
+</html>

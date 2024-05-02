@@ -19,12 +19,15 @@
 <script>
     const GAMEBOARD_WIDTH = 1200;
     const GAMEBOARD_HEIGHT = 800;
+    const UFO_FLEET_COLS = 5;
+    const UFO_FLEET_ROW = 11;
     let score = 0;
     let totalTime = 0 ;
     let minute = 0;
     let second = 0;
     let temp = undefined;
     let text = '';
+    let loadingSpeed = 200 //milisecond
 
 
     const SHIP_HEIGHT = 80;
@@ -198,22 +201,22 @@
             ufoBombList = [];
             totalUfo = [];
             totalTime = 0;
-            text = 'TOP 5 HIGHEST SCORE PLAYER: <br>';
+            text = '<b>TOP 5 HIGHEST SCORE PLAYER: </b><br>';
             this.spaceShip.show();
-            for (let i = 0; i < 11; i++) {
-                for (let j = 0; j < 5; j++) {
+            for (let i = 0; i < UFO_FLEET_ROW; i++) {
+                for (let j = 0; j < UFO_FLEET_COLS; j++) {
                     createUfo(UFO_STARTX + 80 * i, UFO_STARTY + 80 * j)
                 }
             }
             for(let i=0 ; i<topFivePlayer.length ; i++){
-                text += (i+1) + '. ' + topFivePlayer[i][0] + ': ' + topFivePlayer[i][1] + '<br>'
+                text += (i+1) + '. ' + topFivePlayer[i][0] + ': <b>' + topFivePlayer[i][1] + '</b><br>'
             }
             document.getElementById('top5').innerHTML = text;
         }
         this.render = function () {
             document.getElementById('gameboard').getContext('2d').clearRect(0, 0, GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
             spaceShip.show();
-            totalTime += 0.2;
+            totalTime += loadingSpeed/1000;
             minute = Math.floor(totalTime / 60);
             second = Math.floor(totalTime % 60);
             ufoLength = totalUfo.length;
@@ -233,6 +236,20 @@
                     }
                 }
             } else {
+                for (let i = 0; i < spaceShip.bombList.length; i++) {
+                    spaceShip.bombList[i].move();
+                    spaceShip.bombList[i].show();
+                    if (spaceShip.bombList[i].yPosition <= 0) {
+                        spaceShip.bombList.splice(i, 1)
+                    }
+                }
+                for (let i = 0; i < ufoBombList.length; i++) {
+                    ufoBombList[i].move();
+                    ufoBombList[i].show();
+                    if (ufoBombList[i].yPosition >= GAMEBOARD_HEIGHT) {
+                        ufoBombList.splice(i, 1)
+                    }
+                }
                 for (let i = 0; i < ufoLength; i++) {
                     indexUfoCrash = isCrash(totalUfo[i], spaceShip.bombList)
                     if (indexUfoCrash !== -1) {
@@ -246,23 +263,8 @@
                         }
                         totalUfo[i].move();
                         totalUfo[i].show();
-                        totalUfo[i].isFire = Math.floor((Math.random() + 0.005));
+                        totalUfo[i].isFire = Math.floor((Math.random() + 0.5/ufoLength));
                         totalUfo[i].fire();
-                    }
-                }
-                spaceShipBombLength = spaceShip.bombList.length;
-                for (let i = 0; i < spaceShipBombLength; i++) {
-                    spaceShip.bombList[i].move();
-                    spaceShip.bombList[i].show();
-                    if (spaceShip.bombList[i].yPosition < 0) {
-                        spaceShip.bombList.splice(i, 1)
-                    }
-                }
-                for (let i = 0; i < ufoBombList.length; i++) {
-                    ufoBombList[i].move();
-                    ufoBombList[i].show();
-                    if (ufoBombList[i].yPosition >= GAMEBOARD_HEIGHT) {
-                        ufoBombList.splice(i, 1)
                     }
                 }
                 document.getElementById('score').innerHTML = 'Your score: <span style="color: red;">'+score+'</span></br>Time: <span style="color: red;">'+minute+':'+second+'</span>'
@@ -314,10 +316,9 @@
     let bombEgg = new Bomb('egg',1,false,20);
     let spaceShip = new SpaceShip(SHIP_STARTX,SHIP_STARTY,bombEgg);
     let gameBoard = new GameBoard(spaceShip);
-    // gameBoard.start();
     let startGame = function(){
         gameBoard.start();
-        playGame = setInterval(gameBoard.render,200)
+        playGame = setInterval(gameBoard.render,loadingSpeed)
     };
 </script>
 </body>

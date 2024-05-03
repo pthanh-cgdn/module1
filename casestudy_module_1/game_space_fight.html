@@ -227,7 +227,7 @@
                     topFivePlayer.push([name, score, minute, second]);
                     topFivePlayer = sortList(topFivePlayer);
                 } else {
-                    if (score * 3600 + minute * 60 + second > topFivePlayer[4][1] * 3600 + topFivePlayer[4][2] * 60 + topFivePlayer[4][3]) {
+                    if (score * 3600 - minute * 60 - second > topFivePlayer[4][1] * 3600 - topFivePlayer[4][2] * 60 - topFivePlayer[4][3]) {
                         topFivePlayer.pop();
                         name = prompt('Please input your name');
                         topFivePlayer.push([name, score, minute, second]);
@@ -303,7 +303,7 @@
     let sortList = function (arr) {
         let i = 0;
         while (i < arr.length - 1) {
-            if (arr[i][1] * 3600 + arr[i][2] * 60 + arr[i][3] < arr[i + 1][1] * 3600 + arr[i + 1][2] * 60 + arr[i + 1][3]) {
+            if (arr[i][1] * 3600 - arr[i][2] * 60 - arr[i][3] < arr[i + 1][1] * 3600 - arr[i + 1][2] * 60 - arr[i + 1][3]) {
                 temp = arr[i];
                 arr[i] = arr[i + 1];
                 arr[i + 1] = temp;

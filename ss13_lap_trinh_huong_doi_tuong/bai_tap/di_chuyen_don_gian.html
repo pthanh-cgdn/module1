@@ -10,35 +10,36 @@
     const WIDTH = 120; //3400
     const HEIGHT = 60; //1500
     const SPEED = 50
-    function Hero(image, top, left, size){
-        this.image = './images/'+image;
+
+    function Hero(image, top, left, size) {
+        this.image = './images/' + image;
         this.top = top;
         this.left = left;
         this.width = 120;
         this.height = 60
         this.speed = 100
 
-        this.getHeroElement = function(){
-            return '<img width="'+ this.width + '"' +
-                ' height="'+ this.height + '"' +
-                ' src="' + this.image +'"' +
-                ' style="top: '+this.top+'px; left:'+this.left+'px;position:absolute;"' +
+        this.getHeroElement = function () {
+            return '<img width="' + this.width + '"' +
+                ' height="' + this.height + '"' +
+                ' src="' + this.image + '"' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;"' +
                 ' alt = "No image is found" />';
         }
 
-        this.moveRight = function(){
+        this.moveRight = function () {
             this.left += this.speed;
             console.log('ok: ' + this.left);
         }
-        this.moveDown = function(){
+        this.moveDown = function () {
             this.top += this.speed;
             console.log('ok: ' + this.left);
         }
-        this.moveLeft = function(){
+        this.moveLeft = function () {
             this.left -= this.speed;
             console.log('ok: ' + this.left);
         }
-        this.moveUp = function(){
+        this.moveUp = function () {
             this.top -= this.speed;
             console.log('ok: ' + this.left);
         }
@@ -48,20 +49,21 @@
 
     // tu vi tri x=0, y=0 di chuyen den x = window - object width y =0 di chuyen den y = window - object height, x- window - object + speed
     function start() {
-            if (hero.left < window.innerWidth - hero.width && hero.top < hero.height) {
-                hero.moveRight();
-            } else if (hero.left > window.innerWidth - hero.width && hero.top < window.innerHeight - hero.height){
-                    hero.moveDown()
-                } else if (hero.top > window.innerHeight - hero.height && hero.left > hero.width) {
-                hero.moveLeft();
-            } else if (hero.left < hero.width && hero.top > hero.height) {
-                hero.moveUp()
-            } else (
-                moveRight()
-            )
+        if (hero.left < window.innerWidth - hero.width && hero.top < hero.height) {
+            hero.moveRight();
+        } else if (hero.left > window.innerWidth - hero.width && hero.top < window.innerHeight - hero.height) {
+            hero.moveDown()
+        } else if (hero.top > window.innerHeight - hero.height && hero.left > hero.width) {
+            hero.moveLeft();
+        } else if (hero.left < hero.width && hero.top > hero.height) {
+            hero.moveUp()
+        } else (
+            moveRight()
+        )
         document.getElementById('game').innerHTML = hero.getHeroElement();
         setTimeout(start, 500)
     }
+
     start();
 </script>
 </body>

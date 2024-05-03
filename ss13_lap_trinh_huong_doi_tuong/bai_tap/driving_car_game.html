@@ -37,7 +37,7 @@
     let barrier = undefined;
     let diamond = undefined;
     let point = 0
-    let Auto = function() {
+    let Auto = function () {
         this.height = AUTO_HEIGHT;
         this.width = AUTO_WIDTH;
         this.xPosition = DEFAULT_AUTO_X_POSITION;
@@ -75,7 +75,7 @@
         }
 
     }
-    let Barrier = function(){
+    let Barrier = function () {
         this.height = BARRIER_HEIGHT;
         this.width = BARRIER_WIDTH;
         this.xPosition = 0;
@@ -85,20 +85,22 @@
             let xPosition = this.xPosition;
             let yPosition = this.yPosition;
             image.onload = function () {
-                ctx.drawImage(image, xPosition, yPosition,BARRIER_WIDTH,BARRIER_HEIGHT);
+                ctx.drawImage(image, xPosition, yPosition, BARRIER_WIDTH, BARRIER_HEIGHT);
             };
             image.src = './images/barrier.png';
         }
     }
-    function createBarrier(){
+
+    function createBarrier() {
         let ctx = document.getElementById('myCanvas').getContext('2d');
         barrier = new Barrier();
-        barrier.xPosition = (Math.floor(Math.random()*(GAMEBOARD_WIDTH/BARRIER_WIDTH-4))+2)*BARRIER_WIDTH;
-        barrier.yPosition = (Math.floor(Math.random()*(GAMEBOARD_HEIGHT/BARRIER_HEIGHT-4))+2)*BARRIER_HEIGHT;
+        barrier.xPosition = (Math.floor(Math.random() * (GAMEBOARD_WIDTH / BARRIER_WIDTH - 4)) + 2) * BARRIER_WIDTH;
+        barrier.yPosition = (Math.floor(Math.random() * (GAMEBOARD_HEIGHT / BARRIER_HEIGHT - 4)) + 2) * BARRIER_HEIGHT;
         barrier.show(ctx);
         totalBarrier.push(barrier);
     }
-    let Diamond = function(){
+
+    let Diamond = function () {
         this.height = DIAMOND_HEIGHT;
         this.width = DIAMOND_WIDTH;
         this.xPosition = 0;
@@ -108,22 +110,23 @@
             let xPosition = this.xPosition;
             let yPosition = this.yPosition;
             image.onload = function () {
-                ctx.drawImage(image, xPosition, yPosition,DIAMOND_WIDTH,DIAMOND_HEIGHT);
+                ctx.drawImage(image, xPosition, yPosition, DIAMOND_WIDTH, DIAMOND_HEIGHT);
             };
             image.src = './images/diamond.png';
         }
     };
-    function createDiamond(){
+
+    function createDiamond() {
         let ctx = document.getElementById('myCanvas').getContext('2d');
         diamond = new Diamond();
-        diamond.xPosition = (Math.floor(Math.random()*(GAMEBOARD_WIDTH/BARRIER_WIDTH-4))+2)*BARRIER_WIDTH;
-        diamond.yPosition = (Math.floor(Math.random()*(GAMEBOARD_HEIGHT/BARRIER_HEIGHT-4))+2)*BARRIER_HEIGHT;
+        diamond.xPosition = (Math.floor(Math.random() * (GAMEBOARD_WIDTH / BARRIER_WIDTH - 4)) + 2) * BARRIER_WIDTH;
+        diamond.yPosition = (Math.floor(Math.random() * (GAMEBOARD_HEIGHT / BARRIER_HEIGHT - 4)) + 2) * BARRIER_HEIGHT;
         diamond.show(ctx);
         totalDiamond.push(diamond);
     }
 
-    function isCrash(obj,arr){
-        for (let i=0 ; i<arr.length ; i++) {
+    function isCrash(obj, arr) {
+        for (let i = 0; i < arr.length; i++) {
             if ((arr[i].xPosition <= obj.xPosition + obj.width)
                 && (arr[i].xPosition + arr[i].height >= obj.xPosition)
                 && (arr[i].yPosition <= obj.yPosition + obj.height)
@@ -140,27 +143,27 @@
         totalDiamond = []
         this.auto = new Auto();
         this.ctx = undefined;
-        this.start = function(){
+        this.start = function () {
             this.ctx = document.getElementById('myCanvas').getContext('2d');
             this.auto.show(this.ctx);
-            for (let i=0 ; i<GAMEBOARD_OBSTACLES ; i++) {
+            for (let i = 0; i < GAMEBOARD_OBSTACLES; i++) {
                 createBarrier()
             }
-            for (let i=0 ; i<GAMEBOARD_DIAMOND ; i++) {
+            for (let i = 0; i < GAMEBOARD_DIAMOND; i++) {
                 createDiamond()
             }
         };
-        this.render = function(){
+        this.render = function () {
             this.ctx.clearRect(0, 0, GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
-            for (let i=0 ; i<totalBarrier.length ; i++){
+            for (let i = 0; i < totalBarrier.length; i++) {
                 totalBarrier[i].show(this.ctx)
             }
-            for (let i=0 ; i<totalDiamond.length ; i++){
+            for (let i = 0; i < totalDiamond.length; i++) {
                 totalDiamond[i].show(this.ctx)
             }
             this.auto.show(this.ctx);
         };
-        this.moveAuto = function(event) {
+        this.moveAuto = function (event) {
             let orientation = '';
             switch (event.key) {
                 case 'Control':
@@ -179,13 +182,13 @@
                     orientation = ORIENTATION_RIGHT;
                     break;
             }
-            if (isCrash(this.auto,totalBarrier)!==-1 || totalDiamond.length===0) {
-                alert('Game End. You score is: '+point)
+            if (isCrash(this.auto, totalBarrier) !== -1 || totalDiamond.length === 0) {
+                alert('Game End. You score is: ' + point)
             } else {
-                if (isCrash(this.auto,totalDiamond)!==-1) {
+                if (isCrash(this.auto, totalDiamond) !== -1) {
                     point++;
                     totalDiamond.splice(isCrash(this.auto, totalDiamond), 1);
-                    alert('Congrat!You won a point!!!. Your score is: '+point);
+                    alert('Congrat!You won a point!!!. Your score is: ' + point);
                 }
                 if (orientation) {
                     if (this.auto.orientation !== orientation) {
@@ -199,6 +202,7 @@
             }
         }
     }
+
     let gameBoard = new GameBoard();
     gameBoard.start()
 </script>

@@ -7,38 +7,38 @@
 <body>
 <script>
     let hash = 'abc123'
-    let Remote = function(code){
+    let Remote = function (code) {
         this.code = code;
-        this.connectToTV = function(tv){
-            if(tv.code === this.code){
+        this.connectToTV = function (tv) {
+            if (tv.code === this.code) {
                 this.tv = tv
             }
         }
-        this.setChannel = function(channel){
+        this.setChannel = function (channel) {
             this.tv.channel = channel
         }
-        this.setVolume = function(volume){
+        this.setVolume = function (volume) {
             this.tv.volume = volume
         }
     }
-    let TV = function(channel, volume, status){
+    let TV = function (channel, volume, status) {
         this.code = hash
         this.channel = channel;
         this.volume = volume;
         this.status = status;
-        this.turnOn = function(){
+        this.turnOn = function () {
             this.status = true
         }
-        this.setChannel = function(channel){
+        this.setChannel = function (channel) {
             this.channel = channel
         };
-        this.setVolume = function(volume){
+        this.setVolume = function (volume) {
             this.volume = volume
         };
-        this.getChannel = function(){
+        this.getChannel = function () {
             return this.channel
         }
-        this.getVolume = function(){
+        this.getVolume = function () {
             return this.volume
         }
     }

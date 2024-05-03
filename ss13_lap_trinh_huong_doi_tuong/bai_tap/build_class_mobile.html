@@ -6,62 +6,62 @@
 </head>
 <body>
 <script>
-    function Mobile(name,batteryPercentage){
+    function Mobile(name, batteryPercentage) {
         this.name = name
         this.bateryPercentage = batteryPercentage;
         this.receivedMessageStore = []
         this.sentMessageStore = [];
         this.message = ''
         this.isOn = this.bateryPercentage !== 0;
-        this.switch = function(){
+        this.switch = function () {
             if (this.bateryPercentage > 0) {
                 this.bateryPercentage--
                 this.isOn = !this.isOn
             }
         }
-        this.chargeMobile = function(){
+        this.chargeMobile = function () {
             this.bateryPercentage = 100
         }
-        this.draftMessage = function(msg) {
+        this.draftMessage = function (msg) {
             this.message = msg
         }
-        this.receiveMessage = function(msg, mobile){
+        this.receiveMessage = function (msg, mobile) {
             if (this.isOn) {
                 this.bateryPercentage--;
-                this.receivedMessageStore.unshift([mobile.name,msg]);
+                this.receivedMessageStore.unshift([mobile.name, msg]);
             }
         }
-        this.sentMessage = function(msg, mobile){
+        this.sentMessage = function (msg, mobile) {
             if (this.isOn) {
                 this.bateryPercentage--;
                 this.draftMessage(msg);
-                this.sentMessageStore.unshift([mobile.name,this.message]);
+                this.sentMessageStore.unshift([mobile.name, this.message]);
                 this.draftMessage('');
                 mobile.receiveMessage(msg, this)
             }
         }
-        this.readReceivedMessage = function(mobile,n){
+        this.readReceivedMessage = function (mobile, n) {
             if (this.isOn) {
                 this.bateryPercentage--
-                for (let i=0; i<this.receivedMessageStore.length; i++){
-                    if(this.receivedMessageStore[i][0]===mobile){
-                        if (n===0){
+                for (let i = 0; i < this.receivedMessageStore.length; i++) {
+                    if (this.receivedMessageStore[i][0] === mobile) {
+                        if (n === 0) {
                             return this.receivedMessageStore[i];
-                        } else{
+                        } else {
                             n--
                         }
                     }
                 }
             }
         }
-        this.readSentMessage = function(mobile,n){
+        this.readSentMessage = function (mobile, n) {
             if (this.isOn) {
                 this.bateryPercentage--
-                for (let i=0; i<this.sentMessageStore.length; i++){
-                    if(this.sentMessageStore[i][0]===mobile){
-                        if (n===0){
+                for (let i = 0; i < this.sentMessageStore.length; i++) {
+                    if (this.sentMessageStore[i][0] === mobile) {
+                        if (n === 0) {
                             return this.sentMessageStore[i];
-                        } else{
+                        } else {
                             n--
                         }
                     }
@@ -69,8 +69,9 @@
             }
         }
     }
-    let nokia = new Mobile('nokia',0);
-    let iphone = new Mobile('iphone',1);
+
+    let nokia = new Mobile('nokia', 0);
+    let iphone = new Mobile('iphone', 1);
     nokia.sentMessage('Young men, you have no chance', iphone);
     console.log(nokia.readSentMessage(0));
     console.log(iphone.readReceivedMessage(0));
